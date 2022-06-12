@@ -1,0 +1,27 @@
+.center {
+  position: absolute;
+  margin: auto;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  width: 400px;
+  height: 200px;
+  background-color: #ccc;
+  border-radius: 5px;
+  text-align: center;
+}
+
+.imagecenter {
+  position: absolute;
+  margin: auto;
+  top: -60%;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+body {
+  background-image: url("../resources/loginbg.jpg");
+  background-size: cover;
+}
