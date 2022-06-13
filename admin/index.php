@@ -89,8 +89,8 @@
 	        ?>
           <tr align="left" bgcolor="#f2f2f2">
             <td>
-            <table width="100%" border="1" align="center" cellpadding="0" cellspacing="0">
-              <tr align="left" bgcolor="#f2f2f2">
+            <table width="100%" align="center" cellpadding="0" cellspacing="0" style="-moz-border-radius:50px;border-collapse: collapse;">
+              <tr align="left" bgcolor="#C0C0C0">
                 <th width="3%">No</td>
                 <th width="26%">Name</td>       
                 <th width="8%">Gender</td>
@@ -117,7 +117,7 @@
       <?php 
        $color="2";}
 	   else{
-	   echo "<tr bgcolor='#FFFFFF'>"
+	   echo "<tr bgcolor='#F2F2F2'>"
 	  ?>
         <td>&nbsp;<?php echo $a+1; ?></td>
         <td>&nbsp;<?php echo ucwords (strtolower($row['name'])); ?></td>   
