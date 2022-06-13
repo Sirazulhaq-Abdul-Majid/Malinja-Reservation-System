@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Simple landing page</title>
+  <title>Home</title>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -10,6 +10,8 @@
   <link rel="stylesheet" href="vendors/mdi/css/materialdesignicons.min.css">
   <link rel="stylesheet" href="vendors/aos/css/aos.css">
   <link rel="stylesheet" href="css/style.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+
 </head>
 <body id="body" data-spy="scroll" data-target=".navbar" data-offset="100">
   <header id="header-section">
@@ -68,6 +70,7 @@
         <div class="content-header">
           <h2>Users View</h2>
           <h6 class="section-subtitle text-muted">Edit and remove users<br>according to your needs.</h6>
+          <input type="text" name="search_text"id="search_text" placeholder="Search by Student Details" />
         </div>
         <div class="d-md-flex justify-content-between">
           <?php 
@@ -103,7 +106,7 @@
 	  
 	  for ($a=0; $a<$numrow; $a++) {
 		$row = mysqli_fetch_array($result);
-		
+    
 		if($row['level_id']==1){
 			echo "<tr bgcolor='3399FF'>"
 	  ?>
@@ -143,7 +146,51 @@
   <tr>
     <td>&nbsp;</td>
   </tr>
+  <div id="result"></div>
+  <script>
 
+$(document).ready(function(){
+
+load_data();
+
+function load_data(query){
+
+$.ajax({
+
+url:"fetch.php",
+
+method:"POST",
+
+data:{query:query},
+
+success:function(data){
+
+$('#result').html(data);
+}
+
+});
+
+}
+
+$('#search_text').keyup(function(){
+
+var search = $(this).val();
+
+if(search != ''){
+
+load_data(search);
+
+}else{
+
+load_data();
+
+}
+
+});
+
+});
+
+</script>
 
             
         </div>
