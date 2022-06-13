@@ -112,7 +112,7 @@
         <td>&nbsp;<?php if ($row['gender']==1){ echo 'Male'; }else{ echo 'Female'; } ?></td>
         <td><?php echo ucwords (strtolower($row['address'])); ?></td>
         <td>&nbsp;<?php echo $row['telephone']; ?></td>
-        <td width="5%" align="center"><a class="one" href="#">Detail</a></td>
+        <td width="5%" align="center"><a class="one" href="update_user.php?user_id=<?php echo $row['user_id'];?>">Edit</a></td>
        </tr> 
       <?php 
        $color="2";}
@@ -121,10 +121,10 @@
 	  ?>
         <td>&nbsp;<?php echo $a+1; ?></td>
         <td>&nbsp;<?php echo ucwords (strtolower($row['name'])); ?></td>   
-        <td>&nbsp;<?php if ($row['gender']=="M"){ echo 'Male'; }else{ echo 'Female'; } ?></td>
+        <td>&nbsp;<?php if ($row['gender']==1){ echo 'Male'; }else{ echo 'Female'; } ?></td>
         <td><?php echo ucwords (strtolower($row['address'])); ?></td>
         <td>&nbsp;<?php echo $row['telephone']; ?></td>
-        <td width="5%" align="center"><a class="one" href="#">Detail</a></td>
+        <td width="5%" align="center"><a class="one" href="update_user.php?user_id=<?php echo $row['user_id'];?>">Edit</a></td>
       </tr>
 	   <?php
 	    $color="1";
