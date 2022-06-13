@@ -18,7 +18,9 @@
     <nav class="navbar navbar-expand-lg pl-3 pl-sm-0" id="navbar">
     <div class="container">
       <div class="navbar-brand-wrapper d-flex w-100">
-        <img src="images/Group2.svg" alt="">
+      
+        <img src="images/logohoriz.png" alt="" style="width:150px;">
+      
         <button class="navbar-toggler ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="mdi mdi-menu navbar-toggler-icon"></span>
         </button> 
@@ -34,19 +36,18 @@
             </button>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#header-section">Home <span class="sr-only">(current)</span></a>
+            <a class="nav-link" href="#header-section">Requests <span class="sr-only">(current)</span></a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#features-section">Users</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#digital-marketing-section">Blog</a>  
+            <a class="nav-link" href="#digital-marketing-section">Rooms</a>  
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#feedback-section">Testimonials</a>
+            <a class="nav-link" href="#feedback-section">Report</a>
           </li>
           <li class="nav-item btn-contact-us pl-4 pl-lg-0">
-            <button class="btn btn-info" data-toggle="modal" data-target="#exampleModal">Contact Us</button>
           </li>
         </ul>
       </div>
@@ -55,22 +56,27 @@
   </header>
   <div class="banner" >
     <div class="container">
-      <h1 class="font-weight-semibold">Search engine optimisation &<br>Marketing.</h1>
+    <div class="col-12 col-lg-7 grid-margin grid-margin-lg-0" data-aos="fade-right" style="margin-left:225px;">
+      <h1 class="font-weight-semibold">I-Kolej</h1>
+</div>  
       <h6 class="font-weight-normal text-muted pb-3">Simple is a simple template with a creative design that solves all your marketing and SEO queries.</h6>
       <div>
-        <button class="btn btn-opacity-light mr-1">Get started</button>
-        <button class="btn btn-opacity-success ml-1">Learn more</button>
+        
       </div>
-      <img src="images/Group171.svg" alt="" class="img-fluid">
+      <div class="col-12 col-lg-5 p-0 img-digital grid-margin grid-margin-lg-0" data-aos="fade-left">
+      <img src="images/image.png" alt="" class="img-fluid" style="width:400px; margin-left:800px;">
+</div>
     </div>
   </div>
   <div class="content-wrapper">
     <div class="container">
       <section class="features-overview" id="features-section" >
         <div class="content-header">
+        <div class="col-12 col-lg-7 grid-margin grid-margin-lg-0" data-aos="fade-right" style="margin-left:225px;">
           <h2>Users View</h2>
+</div>
           <h6 class="section-subtitle text-muted">Edit and remove users<br>according to your needs.</h6>
-          <input type="text" name="search_text"id="search_text" placeholder="Search by Student Details" />
+          <input type="text" name="search_text"id="search_text"  style="text-align:center"placeholder="Search by Student Details" />
         </div>
         <div class="d-md-flex justify-content-between">
           <?php 
@@ -86,13 +92,13 @@
 	
           ?>
           <?php
-		      $query = "SELECT * FROM user ORDER BY name";
+		      $query = "SELECT * FROM user ORDER BY level_id,name";
 		      $result = mysqli_query($dbconn, $query) or die ("Error: " . mysqli_error($dbconn));
 		      $numrow = mysqli_num_rows($result);
 	        ?>
           <tr align="left" bgcolor="#f2f2f2">
             <td>
-            <table width="100%" align="center" cellpadding="0" cellspacing="0" style="-moz-border-radius:50px;border-collapse: collapse;">
+            <table width="100%" align="left" cellpadding="0" cellspacing="0" style="-moz-border-radius:50px;border-collapse: collapse;">
               <tr align="left" bgcolor="#C0C0C0">
                 <th width="3%">No</td>
                 <th width="26%">Name</td>       
@@ -140,13 +146,14 @@
  			   </tr>'; 
 		}
 	  ?>
+
+    <tr border=0 ><td></td><td colspan=5><div id='result'></div> </td></tr>
     </table>
     </td>
   </tr>
   <tr>
     <td>&nbsp;</td>
-  </tr>
-  <div id="result"></div>
+  </tr><br>
   <script>
 
 $(document).ready(function(){
