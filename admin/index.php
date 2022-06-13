@@ -35,7 +35,7 @@
             <a class="nav-link" href="#header-section">Home <span class="sr-only">(current)</span></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#features-section">About</a>
+            <a class="nav-link" href="#features-section">Users</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#digital-marketing-section">Blog</a>  
@@ -66,34 +66,86 @@
     <div class="container">
       <section class="features-overview" id="features-section" >
         <div class="content-header">
-          <h2>How does it works</h2>
-          <h6 class="section-subtitle text-muted">One theme that serves as an easy-to-use operational toolkit<br>that meets customer's needs.</h6>
+          <h2>Users View</h2>
+          <h6 class="section-subtitle text-muted">Edit and remove users<br>according to your needs.</h6>
         </div>
         <div class="d-md-flex justify-content-between">
-          <div class="grid-margin d-flex justify-content-start">
-            <div class="features-width">
-              <img src="images/Group12.svg" alt="" class="img-icons">
-              <h5 class="py-3">Speed<br>Optimisation</h5>
-              <p class="text-muted">Lorem ipsum dolor sit amet, tincidunt vestibulum. Fusce egeabus consectetuer turpis, suspendisse.</p>
-              <a href="#"><p class="readmore-link">Readmore</p></a>  
-            </div>
-          </div>
-          <div class="grid-margin d-flex justify-content-center">
-            <div class="features-width">
-              <img src="images/Group7.svg" alt="" class="img-icons">
-              <h5 class="py-3">SEO and<br>Backlinks</h5>
-              <p class="text-muted">Lorem ipsum dolor sit amet, tincidunt vestibulum. Fusce egeabus consectetuer turpis, suspendisse.</p>
-              <a href="#"><p class="readmore-link">Readmore</p></a>
-            </div>
-          </div>
-          <div class="grid-margin d-flex justify-content-end">
-            <div class="features-width">
-              <img src="images/Group5.svg" alt="" class="img-icons">
-              <h5 class="py-3">Content<br>Marketing</h5>
-              <p class="text-muted">Lorem ipsum dolor sit amet, tincidunt vestibulum. Fusce egeabus consectetuer turpis, suspendisse.</p>
-              <a href="#"><p class="readmore-link">Readmore</p></a>
-            </div>
-          </div>
+          <?php 
+          // Include database connection settings
+          include('../php/dbconn.php');
+
+          include ("../php/session.php");
+          session_start();
+
+          if (!isset($_SESSION['username'])) {
+            header('Location: ../');
+		      } 
+	
+          ?>
+          <?php
+		      $query = "SELECT * FROM user ORDER BY name";
+		      $result = mysqli_query($dbconn, $query) or die ("Error: " . mysqli_error($dbconn));
+		      $numrow = mysqli_num_rows($result);
+	        ?>
+          <tr align="left" bgcolor="#f2f2f2">
+            <td>
+            <table width="100%" border="1" align="center" cellpadding="0" cellspacing="0">
+              <tr align="left" bgcolor="#f2f2f2">
+                <th width="3%">No</td>
+                <th width="26%">Name</td>       
+                <th width="8%">Gender</td>
+                <th width="27%">Address</td>
+                <th width="9%">Telephone</td>
+                <th align="center">Action</td>
+          </tr>
+          <?php
+	  $color="1";
+	  
+	  for ($a=0; $a<$numrow; $a++) {
+		$row = mysqli_fetch_array($result);
+		
+		if($row['level_id']==1){
+			echo "<tr bgcolor='3399FF'>"
+	  ?>
+        <td>&nbsp;<?php echo $a+1; ?></td>
+        <td>&nbsp;<?php echo ucwords (strtolower($row['name'])); ?></td>   
+        <td>&nbsp;<?php if ($row['gender']==1){ echo 'Male'; }else{ echo 'Female'; } ?></td>
+        <td><?php echo ucwords (strtolower($row['address'])); ?></td>
+        <td>&nbsp;<?php echo $row['telephone']; ?></td>
+        <td width="5%" align="center"><a class="one" href="#">Detail</a></td>
+       </tr> 
+      <?php 
+       $color="2";}
+	   else{
+	   echo "<tr bgcolor='#FFFFFF'>"
+	  ?>
+        <td>&nbsp;<?php echo $a+1; ?></td>
+        <td>&nbsp;<?php echo ucwords (strtolower($row['name'])); ?></td>   
+        <td>&nbsp;<?php if ($row['gender']=="M"){ echo 'Male'; }else{ echo 'Female'; } ?></td>
+        <td><?php echo ucwords (strtolower($row['address'])); ?></td>
+        <td>&nbsp;<?php echo $row['telephone']; ?></td>
+        <td width="5%" align="center"><a class="one" href="#">Detail</a></td>
+      </tr>
+	   <?php
+	    $color="1";
+	   }
+	  } 
+	  if ($numrow==0)
+	  	{
+		 echo '<tr>
+    				<td colspan="8"><font color="#FF0000">No record avaiable.</font></td>
+ 			   </tr>'; 
+		}
+	  ?>
+    </table>
+    </td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+  </tr>
+
+
+            
         </div>
       </section>     
       <section class="digital-marketing-service" id="digital-marketing-section">
@@ -106,7 +158,7 @@
             </div>    
           </div>
           <div class="col-12 col-lg-5 p-0 img-digital grid-margin grid-margin-lg-0" data-aos="fade-left">
-            <img src="images/Group1.png" alt="" class="img-fluid">
+            <img src="images/Group1.png" alt="" class="img-fluid" style="margin-top:30px;">
           </div>
         </div>
         <div class="row align-items-center">

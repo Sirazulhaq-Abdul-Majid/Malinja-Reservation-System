@@ -16,7 +16,7 @@ if(isset($_POST['login'])){
 	$row = mysqli_num_rows($query);
 	if($row == 0){
 	 // Jump to indexwrong page
-	header('Location: indexwrong.html'); 
+	header('Location: ../indexwrong.html'); 
 	}
 	else{
 	 $r = mysqli_fetch_assoc($query);
@@ -28,7 +28,7 @@ if(isset($_POST['login'])){
 		if($level==1) { 
 			$_SESSION['username'] = $r['username'];
 			// Jump to secured page
-			header('Location: ../'); 
+			header('Location: ../admin'); 
 		} 
 		elseif($level==2) {
 			$_SESSION['username'] = $r['username'];
