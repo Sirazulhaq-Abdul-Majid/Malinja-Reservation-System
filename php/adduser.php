@@ -29,5 +29,9 @@ if(isset($_POST['signup'])){
     $result = mysqli_query($dbconn, $query) or die ("Error: " . mysqli_error($dbconn));
 
     mysqli_close($dbconn);
-    header("Location : ../");
+    echo "account created";
+    $test=<<<TEXT
+    <button onclick="window.open('../index.php');">Login</button>
+    TEXT;
+    echo $test;
 ?>
