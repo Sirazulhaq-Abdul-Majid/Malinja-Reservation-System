@@ -14,7 +14,11 @@
 </head>
 
 <body>
-    
+    <?php
+    include ("php/session.php");
+    session_start();
+    session_unset();
+    ?>
     <div class="container-fluid">
         <div class="container">
             <div class="col-xl-10 col-lg-11 mx-auto login-container">
@@ -48,7 +52,6 @@
                             </div>
                             </form>
                             <div class="login-row donroo row no-margin">
-                               <p>Dont have an Account ? <a href="">Sign Up</a></p>
                             </div>
                         </div>
                     </div>
@@ -60,8 +63,7 @@
             </div>
         </div>
     </div>
-    
-
+   
 </body>
 
 <script src="assets/js/popper.min.js"></script>

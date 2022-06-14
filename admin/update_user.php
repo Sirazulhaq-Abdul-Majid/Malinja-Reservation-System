@@ -5,7 +5,7 @@ include ("../php/session.php");
 session_start();
 $user = $_SESSION['username'];
 if (!isset($_SESSION['username'])) {
-        header('Location: ../login');
+        header('Location: ../');
 		} 
 $user_id = $_GET['user_id'];		
 ?>
