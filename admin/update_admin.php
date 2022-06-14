@@ -67,7 +67,7 @@ $user_id = $_GET['user_id'];
       <tr> 
         <td colspan="2"><input type="submit" name="submit" value=" Save " />
         <input type="button" name="cancel" value=" Cancel " onclick="location.href='index.php'" />
-        <input type="button" name="cancel" value=" Delete User " onclick="location.href='delete_user.php?user_id=<?php echo $row['user_id'];?>' "/></td></tr> 
+        <!--<input type="button" name="cancel" value=" Delete User " onclick="location.href='delete_user.php?user_id=<?php echo $row['user_id'];?>' "/></td></tr>--> 
     </table>
 </form>
 
