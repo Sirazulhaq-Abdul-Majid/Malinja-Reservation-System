@@ -46,7 +46,7 @@
 
                              <div class="login-row btnroo row no-margin">
                                <button class="btn btn-primary btn-sm" name="login"> Sign In</button>
-                               <button class="btn btn-success  btn-sm"> Create Account</button>
+                               <button class="btn btn-success  btn-sm" onclick="window.open('signup.php');"> Create Account</button>
                             </div>
                             </form>
                             <div class="login-row donroo row no-margin">

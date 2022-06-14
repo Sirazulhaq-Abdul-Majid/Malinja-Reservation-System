@@ -23,11 +23,11 @@ if(isset($_POST['signup'])){
 }
 
 
-
     $query1="INSERT INTO dependant(dependant_ic,name,telephone,address,email,relationship) value ('$dependant_ic','$dependant_name','$dependant_telephone','$dependant_adress', '$dependant_email','$dependant_relationship')";
 	$query = "INSERT INTO user ( username , password,name, gender, address,telephone,email,dependant_ic,level_id) values ('$username','$password','$name','$gender','$address','$telephone','$email','$dependant_ic',2)";
     $result = mysqli_query($dbconn, $query1) or die ("Error: " . mysqli_error($dbconn));
     $result = mysqli_query($dbconn, $query) or die ("Error: " . mysqli_error($dbconn));
 
     mysqli_close($dbconn);
+    header("Location : ../");
 ?>
