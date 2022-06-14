@@ -29,9 +29,7 @@
                             <h5>Welcome Back!</h5>
                             <form method="POST" action="php/process.php">
                             <div class="login-row row no-margin">
-                                <div name="errr" id="errr">
-                                    
-                                </div>
+                                
                                 <label for=""><i class="fas fa-envelope"></i> Username</label>
                                 <input type="text" class="form-control form-control-sm"name="username" id="username">
                             </div>
