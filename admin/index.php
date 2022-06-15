@@ -55,7 +55,7 @@ if (!isset($_SESSION['username'])) {
             <a class="nav-link" href="#feedback-section">Report</a>
           </li>
           <li class="nav-item btn-contact-us pl-4 pl-lg-0">
-            <button class="btn btn-info" data-toggle="modal" data-target="#exampleModal" onclick='window.open("../index.php")'>Logout</button>
+            <button class="btn btn-info" data-toggle="modal" data-target="#exampleModal" ><a href="../index.php"><div style="color:white">Logout</div></a></button>
           </li>
         </ul>
       </div>
