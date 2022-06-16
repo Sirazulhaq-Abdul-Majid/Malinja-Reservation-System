@@ -67,12 +67,63 @@ if (!isset($_SESSION['username'])) {
     <div class="col-12 col-lg-7 grid-margin grid-margin-lg-0" data-aos="fade-right" style="margin-left:225px;">
       <h1 class="font-weight-semibold">I-Kolej</h1>
 </div>  
-      <h6 class="font-weight-normal text-muted pb-3">Simple is a simple template with a creative design that solves all your marketing and SEO queries.</h6>
-      <div>
-        
+      <h6 class="font-weight-normal text-muted pb-3"></h6>
+      <div style='margin-top:50px;'>
+      <?php
+
+include('../php/dbconn.php');
+
+          include ("../php/session.php");
+
+          if (!isset($_SESSION['username'])) {
+            header('Location: ../');
+		      } 
+            $query="SELECT * FROM room ORDER BY room_id,availability ";
+            $result = mysqli_query($dbconn, $query) or die ("Error: " . mysqli_error($dbconn));
+            $numrow = mysqli_num_rows($result);
+?>
+<?php 
+$numrow = mysqli_num_rows($result);
+$aavail=0;
+$bavail=0;
+$b="";
+$a="";
+for ($a=0;$a<$numrow;$a++){
+    $row = mysqli_fetch_array($result);
+    $block=substr($row['room_id'],0,1);
+    if ($block==="B" && $row['availability']==1){
+      $bavail++;
+    }
+    else if ($block==="A" && $row['availability']==1){
+      $aavail++;
+    }
+}
+if ($aavail>=1){
+  $a="A";
+}
+else if($aavail<=0){
+  $a="";
+}
+if ($bavail>=1){
+  $b="B";
+}
+else if ($bavail<=0){
+  $b="";
+}
+?>
+
+<select id=block name=block>
+  <?php if($a==="A"):?>
+    <option value="A">A</option>
+  <?php endif ?>
+  <?php if($b==="B"):?>
+    <option value="B">B</option>
+  <?php endif ?>
+</select>
+
       </div>
       <div class="col-12 col-lg-5 p-0 img-digital grid-margin grid-margin-lg-0" data-aos="fade-left">
-      <img src="images/image.png" alt="" class="img-fluid" style="width:400px; margin-left:800px;">
+      <img src="images/image.png" alt="" class="img-fluid" style="margin-top:-120px;width:400px; margin-left:800px;">
 </div>
     </div>
   </div>
@@ -86,5 +137,6 @@ if (!isset($_SESSION['username'])) {
   <script src="vendors/owl-carousel/js/owl.carousel.min.js"></script>
   <script src="vendors/aos/js/aos.js"></script>
   <script src="js/landingpage.js"></script>
+
 </body>
 </html>
