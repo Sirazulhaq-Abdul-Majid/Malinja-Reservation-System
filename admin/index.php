@@ -111,16 +111,27 @@ else if ($bavail<=0){
   $b="";
 }
 ?>
-
+<?php
+$acolor='red';
+$bcolor='red';
+?>
 <select id=block name=block>
   <?php if($a==="A"):?>
     <option value="A">A</option>
+    <?php 
+    $acolor='green'?>
   <?php endif ?>
   <?php if($b==="B"):?>
     <option value="B">B</option>
+    <?php 
+    $bcolor='green'?>
   <?php endif ?>
 </select>
-
+<div style='width:50px; height:50px; background-color: <?php echo $acolor;?>;'>
+  </div>
+  <br>
+  <div style='width:50px; height:50px; background-color: <?php echo $bcolor;?>;'>
+  </div>
       </div>
       <div class="col-12 col-lg-5 p-0 img-digital grid-margin grid-margin-lg-0" data-aos="fade-left">
       <img src="images/image.png" alt="" class="img-fluid" style="margin-top:-120px;width:400px; margin-left:800px;">
