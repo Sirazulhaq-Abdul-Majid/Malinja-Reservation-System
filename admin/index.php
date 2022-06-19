@@ -5,7 +5,7 @@ session_start();
 if (!isset($_SESSION['username'])) {
   header('Location: ../');
 }
-echo $_SESSION['user_id'];
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -119,34 +119,29 @@ for ($a=0;$a<$numrow;$a++){
     $block=substr($row['room_id'],0,1);
     $floor=substr($row['room_id'],1,1);
     $room=substr($row['room_id'],2,2);
-    echo $room;
     if ($block==="B"){  
       if($floor==0 && $row['availability']==1){
         $bl0avail++;
         $bavail++;
         $temp=ltrim($room,"0");
-        echo $temp;
         $b0[$temp]='green';
       }
       else if($floor==1 && $row['availability']==1){
         $bl1avail++;
         $bavail++;
         $temp=ltrim($room,"0");
-        echo $temp;
         $b1[$temp]='green';
       }
       else if($floor==2 && $row['availability']==1){
         $bl2avail++;
         $bavail++;
         $temp=ltrim($room,"0");
-        echo $temp;
         $b2[$temp]='green';
       }
       else if($floor==3 && $row['availability']==1){
         $bl3avail++;
         $bavail++;
         $temp=ltrim($room,"0");
-        echo $temp;
         $b3[$temp]='green';
       }
     }
@@ -155,28 +150,24 @@ for ($a=0;$a<$numrow;$a++){
         $al0avail++;
         $aavail++;
         $temp=ltrim($room,"0");
-        echo $temp;
         $a0[$temp]='green';
       }
       else if($floor===1 && $row['availability']==1){
         $al1avail++;
         $aavail++;
         $temp=ltrim($room,"0");
-        echo $temp;
         $a1[$temp]='green';
       }
       else if($floor===2 && $row['availability']==1){
         $al2avail++;
         $aavail++;
         $temp=ltrim($room,"0");
-        echo $temp;
         $a2[$temp]='green';
       }
       else if($floor===3 && $row['availability']==1){
         $al3avail++;
         $aavail++;
         $temp=ltrim($room,"0");
-        echo $temp;
         $a3[$temp]='green';
       }
     }
@@ -317,11 +308,10 @@ $adisp=0;
   <?php endif ?>
   <?php if (isset($_POST['room'])):
     $roomid="B0".str_pad($_POST['room'],2,0,STR_PAD_LEFT);
-    echo $roomid;
     $query1="SELECT * FROM bed WHERE room_id='$roomid' ORDER BY bed_id,availability ";
     $result1 = mysqli_query($dbconn, $query1) or die ("Error: " . mysqli_error($dbconn));
     $numrow = mysqli_num_rows($result1);?>
-    <form method="POST" action="../php/showrooms.php">
+    <form method="POST">
     <?php for ($a=0;$a<$numrow;$a++):
       $row = mysqli_fetch_array($result1);?>
       <?php if ($row['availability']==1):?>
@@ -333,6 +323,13 @@ $adisp=0;
     <?php endfor ?>
       </form>
   <?php endif ?>
+  <?php if (isset($_POST['bed'])):
+      $id= $_SESSION['user_id'];
+      $roomid="B0".str_pad($_POST['bed'],2,0,STR_PAD_LEFT);
+      $queryins="INSERT INTO reserve (user_id,room_id) VALUES ('$id','$roomid')";
+      $result2 = mysqli_query($dbconn, $queryins) or die ("Error: " . mysqli_error($dbconn));
+      ?>
+    <?php endif ?>
   <?php if (isset($_POST['b2select'])&& $bl1avail>0):?>
     <?php $b1click=1; ?>
     <div>
