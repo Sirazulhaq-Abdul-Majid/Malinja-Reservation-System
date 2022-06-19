@@ -348,7 +348,6 @@ $adisp=0;
   <?php endif ?>
   <?php if (isset($_POST['room'])):
     $roomid="B1".str_pad($_POST['room'],2,0,STR_PAD_LEFT);
-    echo $roomid;
     $query1="SELECT * FROM bed WHERE room_id='$roomid' ORDER BY bed_id,availability ";
     $result1 = mysqli_query($dbconn, $query1) or die ("Error: " . mysqli_error($dbconn));
     $numrow = mysqli_num_rows($result1);?>
@@ -382,7 +381,6 @@ $adisp=0;
   <?php endif ?>
   <?php if (isset($_POST['room'])):
     $roomid="B2".str_pad($_POST['room'],2,0,STR_PAD_LEFT);
-    echo $roomid;
     $query1="SELECT * FROM bed WHERE room_id='$roomid' ORDER BY bed_id,availability ";
     $result1 = mysqli_query($dbconn, $query1) or die ("Error: " . mysqli_error($dbconn));
     $numrow = mysqli_num_rows($result1);?>
@@ -415,7 +413,6 @@ $adisp=0;
   <?php endif ?>
   <?php if (isset($_POST['room'])):
     $roomid="B3".str_pad($_POST['room'],2,0,STR_PAD_LEFT);
-    echo $roomid;
     $query1="SELECT * FROM bed WHERE room_id='$roomid' ORDER BY bed_id,availability ";
     $result1 = mysqli_query($dbconn, $query1) or die ("Error: " . mysqli_error($dbconn));
     $numrow = mysqli_num_rows($result1);?>
