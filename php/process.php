@@ -11,7 +11,7 @@ if(isset($_POST['login'])){
 	$username = $_POST['username'];
 	$password = $_POST['password'];
 	
-	$sql= "SELECT username, password, level_id FROM user WHERE username= '$username' AND password= '$password'";
+	$sql= "SELECT username, password, level_id,user_id FROM user WHERE username= '$username' AND password= '$password'";
 	$query = mysqli_query($dbconn, $sql) or die ("Error: " . mysqli_error());
 	$row = mysqli_num_rows($query);
 	if($row == 0){
@@ -27,11 +27,14 @@ if(isset($_POST['login'])){
 	
 		if($level==1) { 
 			$_SESSION['username'] = $r['username'];
+			$_SESSION['user_id']=$r['user_id'];
+			echo $_SESSION['user_id'];
 			// Jump to secured page
 			header('Location: ../admin'); 
 		} 
 		elseif($level==2) {
 			$_SESSION['username'] = $r['username'];
+			$_SESSION['user_id']=$r['user_id'];
 			// Jump to secured page
 			header('Location: ../user');
 		}

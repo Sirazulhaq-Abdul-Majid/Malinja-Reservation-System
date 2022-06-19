@@ -1,9 +1,11 @@
 <?php
 include ("../php/session.php");
+include('../php/dbconn.php');
 session_start();
 if (!isset($_SESSION['username'])) {
   header('Location: ../');
-} 
+}
+echo $_SESSION['user_id'];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -94,51 +96,94 @@ $al0avail=0;
 $al1avail=0;
 $al2avail=0;
 $al3avail=0;
+$a0=array();
+$a0=array_fill(1,25,"red");
+$a1=array();
+$a1=array_fill(1,25,"red");
+$a2=array();
+$a2=array_fill(1,25,"red");
+$a3=array();
+$a3=array_fill(1,25,"red");
+$b0=array();
+$b0=array_fill(1,25,"red");
+$b1=array();
+$b1=array_fill(1,25,"red");
+$b2=array();
+$b2=array_fill(1,25,"red");
+$b3=array();
+$b3=array_fill(1,25,"red");
 $b="";
 $a="";
 for ($a=0;$a<$numrow;$a++){
     $row = mysqli_fetch_array($result);
     $block=substr($row['room_id'],0,1);
     $floor=substr($row['room_id'],1,1);
+    $room=substr($row['room_id'],2,2);
+    echo $room;
     if ($block==="B"){  
       if($floor==0 && $row['availability']==1){
         $bl0avail++;
         $bavail++;
+        $temp=ltrim($room,"0");
+        echo $temp;
+        $b0[$temp]='green';
       }
       else if($floor==1 && $row['availability']==1){
         $bl1avail++;
         $bavail++;
+        $temp=ltrim($room,"0");
+        echo $temp;
+        $b1[$temp]='green';
       }
       else if($floor==2 && $row['availability']==1){
         $bl2avail++;
         $bavail++;
+        $temp=ltrim($room,"0");
+        echo $temp;
+        $b2[$temp]='green';
       }
       else if($floor==3 && $row['availability']==1){
         $bl3avail++;
         $bavail++;
+        $temp=ltrim($room,"0");
+        echo $temp;
+        $b3[$temp]='green';
       }
     }
     else if ($block==="A"){
       if($floor===0 && $row['availability']==1){
         $al0avail++;
         $aavail++;
+        $temp=ltrim($room,"0");
+        echo $temp;
+        $a0[$temp]='green';
       }
       else if($floor===1 && $row['availability']==1){
         $al1avail++;
         $aavail++;
+        $temp=ltrim($room,"0");
+        echo $temp;
+        $a1[$temp]='green';
       }
       else if($floor===2 && $row['availability']==1){
         $al2avail++;
         $aavail++;
+        $temp=ltrim($room,"0");
+        echo $temp;
+        $a2[$temp]='green';
       }
       else if($floor===3 && $row['availability']==1){
         $al3avail++;
         $aavail++;
+        $temp=ltrim($room,"0");
+        echo $temp;
+        $a3[$temp]='green';
       }
     }
 }
-echo $bl0avail, $bl1avail, $bl2avail, $bl3avail;
-echo $al0avail, $al1avail, $al2avail, $al3avail;
+//print_r($b1);
+//echo $bl0avail, $bl1avail, $bl2avail, $bl3avail;
+//echo $al0avail, $al1avail, $al2avail, $al3avail;
 if ($aavail>=1){
   $a="A";
 }
@@ -163,6 +208,14 @@ $bl0color='red';
 $bl1color='red';
 $bl2color='red';
 $bl3color='red';
+$a0click=0;
+$a1click=0;
+$a2click=0;
+$a3click=0;
+$b0click=0;
+$b1click=0;
+$b2click=0;
+$b3click=0;
 $bdisp=0;
 $adisp=0;
 ?>
@@ -219,27 +272,201 @@ $adisp=0;
   <?php endif ?>
 </select>
 <form method='POST'>
-<input type='submit' style='width:50px; height:50px; background-color: <?php echo $acolor;?>;' value="A" name='aselect'>
+<input type='submit' style='width:50px; height:50px; background-color: <?php echo $acolor;?>;border:none;' value="A" name='aselect'>
   </input>
   <br>
-  <input type='submit' style='width:50px; height:50px; background-color: <?php echo $bcolor;?>;' value="B" name='bselect'>
+  <input type='submit' style='width:50px; height:50px; background-color: <?php echo $bcolor;?>;border:none;' value="B" name='bselect'>
   </input>
   </form>
   <?php if (isset($_POST['bselect']) && $bavail>0):?>
   <div>
-    <button style='width:50px; height:50px; background-color: <?php echo $bl0color;?>;'>
-    <button style='width:50px; height:50px; background-color: <?php echo $bl1color;?>;'>
-    <button style='width:50px; height:50px; background-color: <?php echo $bl2color;?>;'>
-    <button style='width:50px; height:50px; background-color: <?php echo $bl3color;?>;'>
-  </button>
+  <form method='POST'>
+    <input type='submit' style='width:50px; height:50px; background-color: <?php echo $bl0color;?>;border:none;' value='level 1' name='b1select'></input>
+    <input type='submit' style='width:50px; height:50px; background-color: <?php echo $bl1color;?>;border:none;' value='level 2' name='b2select'></input>
+    <input type='submit' style='width:50px; height:50px; background-color: <?php echo $bl2color;?>;border:none;' value='level 3' name='b3select'></input>
+    <input type='submit' style='width:50px; height:50px; background-color: <?php echo $bl3color;?>;border:none;' value='level 4' name='b4select'></input>
+  </form>
+  </div>
   <?php endif ?>
   <?php if (isset($_POST['aselect']) && $aavail>0):?>
   <div>
-    <button style='width:50px; height:50px; background-color: <?php echo $al0color;?>;'>
-    <button style='width:50px; height:50px; background-color: <?php echo $al1color;?>;'>
-    <button style='width:50px; height:50px; background-color: <?php echo $al2color;?>;'>
-    <button style='width:50px; height:50px; background-color: <?php echo $al3color;?>;'>
-  </button>
+    <form method='POST'>
+    <input type='submit' style='width:50px; height:50px; background-color: <?php echo $al0color;?>;border:none;' value='level 1' name='a1select'></input>
+    <input type='submit' style='width:50px; height:50px; background-color: <?php echo $al1color;?>;border:none;' value='level 2' name='a2select'></input>
+    <input type='submit' style='width:50px; height:50px; background-color: <?php echo $al2color;?>;border:none;' value='level 3' name='a3select'></input>
+    <input type='submit' style='width:50px; height:50px; background-color: <?php echo $al3color;?>;border:none;' value='level 4' name='a4select'></input>
+    </form>
+  </div>
+  <?php endif ?>
+  <?php if (isset($_POST['b1select'])&& $bl0avail>0):?>
+    <?php $b0click=1;?>
+    
+    <div>
+    <form method='POST'>
+    <input type='submit' style='width:50px; height:50px; background-color: <?php echo $bl0color;?>;border:none;' value='level 1' name='b1select'></input>
+    <input type='submit' style='width:50px; height:50px; background-color: <?php echo $bl1color;?>;border:none;' value='level 2' name='b2select'></input>
+    <input type='submit' style='width:50px; height:50px; background-color: <?php echo $bl2color;?>;border:none;' value='level 3' name='b3select'></input>
+    <input type='submit' style='width:50px; height:50px; background-color: <?php echo $bl3color;?>;border:none;' value='level 4' name='b4select'></input>
+  </form>
+    <form method='POST'>
+      <?php for($a=1;$a<26;$a++):?>
+      <input type='submit' style='width:50px; height:50px; background-color: <?php echo $b0[$a];?>;border:none;' value=<?php echo $a ?> name='room'></input>
+      <?php endfor ?>
+      </form>
+    </div>
+  <?php endif ?>
+  <?php if (isset($_POST['room'])):
+    $roomid="B0".str_pad($_POST['room'],2,0,STR_PAD_LEFT);
+    echo $roomid;
+    $query1="SELECT * FROM bed WHERE room_id='$roomid' ORDER BY bed_id,availability ";
+    $result1 = mysqli_query($dbconn, $query1) or die ("Error: " . mysqli_error($dbconn));
+    $numrow = mysqli_num_rows($result1);?>
+    <form method="POST" action="../php/showrooms.php">
+    <?php for ($a=0;$a<$numrow;$a++):
+      $row = mysqli_fetch_array($result1);?>
+      <?php if ($row['availability']==1):?>
+        <input type='submit' style='width:50px; height:50px; background-color: green;border:none;' value=<?php echo $a+1 ?> name='bed'></input>
+        <?php endif ?>
+      <?php if ($row['availability']==0): ?>
+        <input type='submit' style='width:50px; height:50px; background-color: red;border:none;' value=<?php echo $a+1 ?> name='bed'></input>
+      <?php endif ?>
+    <?php endfor ?>
+      </form>
+  <?php endif ?>
+  <?php if (isset($_POST['b2select'])&& $bl1avail>0):?>
+    <?php $b1click=1; ?>
+    <div>
+    <form method='POST'>
+    <input type='submit' style='width:50px; height:50px; background-color: <?php echo $bl0color;?>;border:none;' value='level 1' name='b1select'></input>
+    <input type='submit' style='width:50px; height:50px; background-color: <?php echo $bl1color;?>;border:none;' value='level 2' name='b2select'></input>
+    <input type='submit' style='width:50px; height:50px; background-color: <?php echo $bl2color;?>;border:none;' value='level 3' name='b3select'></input>
+    <input type='submit' style='width:50px; height:50px; background-color: <?php echo $bl3color;?>;border:none;' value='level 4' name='b4select'></input>
+  </form>
+    <form method='POST' >
+      <?php for($a=1;$a<26;$a++):?>
+      <input type='submit' style='width:50px; height:50px; background-color: <?php echo $b1[$a];?>;border:none;' value=<?php echo $a ?> name='room'></input>
+      <?php endfor ?>
+      </form>
+    </div>
+  <?php endif ?>
+  <?php if (isset($_POST['room'])):
+    $roomid="B1".str_pad($_POST['room'],2,0,STR_PAD_LEFT);
+    echo $roomid;
+    $query1="SELECT * FROM bed WHERE room_id='$roomid' ORDER BY bed_id,availability ";
+    $result1 = mysqli_query($dbconn, $query1) or die ("Error: " . mysqli_error($dbconn));
+    $numrow = mysqli_num_rows($result1);?>
+    <form method="POST" action="../php/showrooms.php">
+    <?php for ($a=0;$a<$numrow;$a++):
+      $row = mysqli_fetch_array($result1);?>
+      <?php if ($row['availability']==1):?>
+        <input type='submit' style='width:50px; height:50px; background-color: green;border:none;' value=<?php echo $a+1 ?> name='bed'></input>
+      <?php endif ?>
+      <?php if ($row['availability']==0): ?>
+        <input type='submit' style='width:50px; height:50px; background-color: red;border:none;' value=<?php echo $a+1 ?> name='bed'></input>
+      <?php endif ?>
+    <?php endfor ?>
+    </form>
+  <?php endif ?>
+  <?php if (isset($_POST['b3select'])&& $bl2avail>0):?>
+    <?php $b2click=1; ?>
+    <div>
+    <form method='POST'>
+    <input type='submit' style='width:50px; height:50px; background-color: <?php echo $bl0color;?>;border:none;' value='level 1' name='b1select'></input>
+    <input type='submit' style='width:50px; height:50px; background-color: <?php echo $bl1color;?>;border:none;' value='level 2' name='b2select'></input>
+    <input type='submit' style='width:50px; height:50px; background-color: <?php echo $bl2color;?>;border:none;' value='level 3' name='b3select'></input>
+    <input type='submit' style='width:50px; height:50px; background-color: <?php echo $bl3color;?>;border:none;' value='level 4' name='b4select'></input>
+  </form>
+    <form method='POST'>
+      <?php for($a=1;$a<26;$a++):?>
+      <input type='submit' style='width:50px; height:50px; background-color: <?php echo $b2[$a];?>;border:none;' value=<?php echo $a ?> name='room'></input>
+      <?php endfor ?>
+      </form>
+    </div>
+  <?php endif ?>
+  <?php if (isset($_POST['room'])):
+    $roomid="B2".str_pad($_POST['room'],2,0,STR_PAD_LEFT);
+    echo $roomid;
+    $query1="SELECT * FROM bed WHERE room_id='$roomid' ORDER BY bed_id,availability ";
+    $result1 = mysqli_query($dbconn, $query1) or die ("Error: " . mysqli_error($dbconn));
+    $numrow = mysqli_num_rows($result1);?>
+    <?php for ($a=0;$a<$numrow;$a++):
+      $row = mysqli_fetch_array($result1);?>
+      <?php if ($row['availability']==1):?>
+        <input type='submit' style='width:50px; height:50px; background-color: green' value=<?php echo $a+1 ?> name='bed'></input>
+      <?php endif ?>
+      <?php if ($row['availability']==0): ?>
+        <input type='submit' style='width:50px; height:50px; background-color: red; border:none;' value=<?php echo $a+1 ?> name='bed'></input>
+      <?php endif ?>
+    <?php endfor ?>
+  <?php endif ?>
+  <?php if (isset($_POST['b4select'])&& $bl3avail>0):?>
+    <?php $b3click=1; ?>
+    <div>
+    <form method='POST'>
+    <input type='submit' style='width:50px; height:50px; background-color: <?php echo $bl0color;?>;border:none;' value='level 1' name='b1select'></input>
+    <input type='submit' style='width:50px; height:50px; background-color: <?php echo $bl1color;?>;border:none;' value='level 2' name='b2select'></input>
+    <input type='submit' style='width:50px; height:50px; background-color: <?php echo $bl2color;?>;border:none;' value='level 3' name='b3select'></input>
+    <input type='submit' style='width:50px; height:50px; background-color: <?php echo $bl3color;?>;border:none;' value='level 4' name='b4select'></input>
+  </form>
+    <form method='POST'>
+      <?php for($a=1;$a<26;$a++):?>
+      <input type='submit' style='width:50px; height:50px; background-color: <?php echo $b3[$a];?>;border:none;' value=<?php echo $a ?> name='room'></input>
+      <?php endfor ?>
+      </form>
+      
+    </div>
+  <?php endif ?>
+  <?php if (isset($_POST['room'])):
+    $roomid="B3".str_pad($_POST['room'],2,0,STR_PAD_LEFT);
+    echo $roomid;
+    $query1="SELECT * FROM bed WHERE room_id='$roomid' ORDER BY bed_id,availability ";
+    $result1 = mysqli_query($dbconn, $query1) or die ("Error: " . mysqli_error($dbconn));
+    $numrow = mysqli_num_rows($result1);?>
+    <?php for ($a=0;$a<$numrow;$a++):
+      $row = mysqli_fetch_array($result1);?>
+      <?php if ($row['availability']==1):?>
+        <input type='submit' style='width:50px; height:50px; background-color: green;border:none;' value=<?php echo $a+1 ?> name='bed'></input>
+      <?php endif ?>
+      <?php if ($row['availability']==0): ?>
+        <input type='submit' style='width:50px; height:50px; background-color: red' value=<?php echo $a+1 ?> name='bed'></input>
+      <?php endif ?>
+    <?php endfor ?>
+  <?php endif ?>
+  <?php if (isset($_POST['b4select'])&& $bl3avail==0):?>
+    <div>
+    <form method='POST'>
+    <input type='submit' style='width:50px; height:50px; background-color: <?php echo $bl0color;?>;border:none;' value='level 1' name='b1select'></input>
+    <input type='submit' style='width:50px; height:50px; background-color: <?php echo $bl1color;?>;border:none;' value='level 2' name='b2select'></input>
+    <input type='submit' style='width:50px; height:50px; background-color: <?php echo $bl2color;?>;border:none;' value='level 3' name='b3select'></input>
+    <input type='submit' style='width:50px; height:50px; background-color: <?php echo $bl3color;?>;border:none;' value='level 4' name='b4select'></input>
+  </form>
+  <?php endif ?>
+  <?php if (isset($_POST['b3select'])&& $bl2avail==0):?>
+    <div>
+    <form method='POST'>
+    <input type='submit' style='width:50px; height:50px; background-color: <?php echo $bl0color;?>;border:none;' value='level 1' name='b1select'></input>
+    <input type='submit' style='width:50px; height:50px; background-color: <?php echo $bl1color;?>;border:none;' value='level 2' name='b2select'></input>
+    <input type='submit' style='width:50px; height:50px; background-color: <?php echo $bl2color;?>;border:none;' value='level 3' name='b3select'></input>
+    <input type='submit' style='width:50px; height:50px; background-color: <?php echo $bl3color;?>;border:none;' value='level 4' name='b4select'></input>
+  </form>
+  <?php endif ?>
+  <?php if (isset($_POST['b2select'])&& $bl1avail==0):?>
+    <div>
+    <form method='POST'>
+    <input type='submit' style='width:50px; height:50px; background-color: <?php echo $bl0color;?>;border:none;' value='level 1' name='b1select'></input>
+    <input type='submit' style='width:50px; height:50px; background-color: <?php echo $bl1color;?>;border:none;' value='level 2' name='b2select'></input>
+    <input type='submit' style='width:50px; height:50px; background-color: <?php echo $bl2color;?>;border:none;' value='level 3' name='b3select'></input>
+    <input type='submit' style='width:50px; height:50px; background-color: <?php echo $bl3color;?>;border:none;' value='level 4' name='b4select'></input>
+  </form>
+  <?php endif ?>
+  <?php if (isset($_POST['b1select'])&& $bl0avail==0):?>
+    <div>
+    <form method='POST'>
+    <input type='submit' style='width:50px; height:50px; background-color: <?php echo $bl0color;?>;border:none;' value='level 1' name='b1select'></input>
+    <input type='submit' style='width:50px; height:50px; background-color: <?php echo $bl1color;?>;border:none;' value='level 2' name='b2select'></input>
+    <input type='submit' style='width:50px; height:50px; background-color: <?php echo $bl2color;?>;border:none;' value='level 3' name='b3select'></input>
+    <input type='submit' style='width:50px; height:50px; background-color: <?php echo $bl3color;?>;border:none;' value='level 4' name='b4select'></input>
+  </form>
   <?php endif ?>
   </div>
       </div>
