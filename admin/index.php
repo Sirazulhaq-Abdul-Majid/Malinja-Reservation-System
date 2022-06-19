@@ -146,25 +146,25 @@ for ($a=0;$a<$numrow;$a++){
       }
     }
     else if ($block==="A"){
-      if($floor===0 && $row['availability']==1){
+      if($floor==0 && $row['availability']==1){
         $al0avail++;
         $aavail++;
         $temp=ltrim($room,"0");
         $a0[$temp]='green';
       }
-      else if($floor===1 && $row['availability']==1){
+      else if($floor==1 && $row['availability']==1){
         $al1avail++;
         $aavail++;
         $temp=ltrim($room,"0");
         $a1[$temp]='green';
       }
-      else if($floor===2 && $row['availability']==1){
+      else if($floor==2 && $row['availability']==1){
         $al2avail++;
         $aavail++;
         $temp=ltrim($room,"0");
         $a2[$temp]='green';
       }
-      else if($floor===3 && $row['availability']==1){
+      else if($floor==3 && $row['availability']==1){
         $al3avail++;
         $aavail++;
         $temp=ltrim($room,"0");
@@ -173,8 +173,8 @@ for ($a=0;$a<$numrow;$a++){
     }
 }
 //print_r($b1);
-//echo $bl0avail, $bl1avail, $bl2avail, $bl3avail;
-//echo $al0avail, $al1avail, $al2avail, $al3avail;
+echo $bl0avail, $bl1avail, $bl2avail, $bl3avail;
+echo $al0avail, $al1avail, $al2avail, $al3avail;
 if ($aavail>=1){
   $a="A";
 }
@@ -242,22 +242,22 @@ $adisp=0;
     $bl3color='green'?>
   <?php endif ?>
   <?php if($al0avail>0):?>
-    <option value="a0">0</option>
+    <option value="A0">0</option>
     <?php 
     $al0color='green'?>
   <?php endif ?>
   <?php if($al1avail>0):?>
-    <option value="a1">0</option>
+    <option value="A1">0</option>
     <?php 
     $al1color='green'?>
   <?php endif ?>
   <?php if($al2avail>0):?>
-    <option value="a2">0</option>
+    <option value="A2">0</option>
     <?php 
     $al2color='green'?>
   <?php endif ?>
   <?php if($al3avail>0):?>
-    <option value="a3">0</option>
+    <option value="A3">0</option>
     <?php 
     $al3color='green'?>
   <?php endif ?>
@@ -289,6 +289,129 @@ $adisp=0;
     </form>
   </div>
   <?php endif ?>
+  <?php if (isset($_POST['a1select'])&& $al1avail>0):?>
+    <?php $a0click=1;?>
+    
+    <div>
+    <form method='POST'>
+    <input type='submit' style='width:50px; height:50px; background-color: <?php echo $al0color;?>;border:none;' value='level 1' name='b1select'></input>
+    <input type='submit' style='width:50px; height:50px; background-color: <?php echo $al1color;?>;border:none;' value='level 2' name='b2select'></input>
+    <input type='submit' style='width:50px; height:50px; background-color: <?php echo $al2color;?>;border:none;' value='level 3' name='b3select'></input>
+    <input type='submit' style='width:50px; height:50px; background-color: <?php echo $al3color;?>;border:none;' value='level 4' name='b4select'></input>
+  </form>
+    <form method='POST'>
+      <?php for($a=1;$a<26;$a++):?>
+      <input type='submit' style='width:50px; height:50px; background-color: <?php echo $a0[$a];?>;border:none;' value=<?php echo $a ?> name='a0room'></input>
+      <?php endfor ?>
+      </form>
+    </div>
+  <?php endif ?>
+  <?php if (isset($_POST['a0room'])):
+    $roomid="A0".str_pad($_POST['a0room'],2,0,STR_PAD_LEFT);
+    $query1="SELECT * FROM bed WHERE room_id='$roomid' ORDER BY bed_id,availability ";
+    $result1 = mysqli_query($dbconn, $query1) or die ("Error: " . mysqli_error($dbconn));
+    $numrow = mysqli_num_rows($result1);?>
+    <form method="POST">
+    <?php for ($a=0;$a<$numrow;$a++):
+      $row = mysqli_fetch_array($result1);?>
+      <?php if ($row['availability']==1):?>
+        <input type='submit' style='width:50px; height:50px; background-color: green;border:none;' value=<?php echo $a+1 ?> name='bed'></input>
+        <?php endif ?>
+      <?php if ($row['availability']==0): ?>
+        <input type='submit' style='width:50px; height:50px; background-color: red;border:none;' value=<?php echo $a+1 ?> name='bed'></input>
+      <?php endif ?>
+    <?php endfor ?>
+      </form>
+  <?php endif ?>
+  <?php if (isset($_POST['bed'])):
+      $id= $_SESSION['user_id'];
+      $roomid="A0".str_pad($_POST['bed'],2,0,STR_PAD_LEFT);
+      $queryins="INSERT INTO reserve (user_id,room_id) VALUES ('$id','$roomid')";
+      $result2 = mysqli_query($dbconn, $queryins) or die ("Error: " . mysqli_error($dbconn));
+      ?>
+    <?php endif ?>
+    <?php if (isset($_POST['a2select'])&& $al2avail>0):?>
+    <?php $a2click=1;?>
+    
+    <div>
+    <form method='POST'>
+    <input type='submit' style='width:50px; height:50px; background-color: <?php echo $al0color;?>;border:none;' value='level 1' name='b1select'></input>
+    <input type='submit' style='width:50px; height:50px; background-color: <?php echo $al1color;?>;border:none;' value='level 2' name='b2select'></input>
+    <input type='submit' style='width:50px; height:50px; background-color: <?php echo $al2color;?>;border:none;' value='level 3' name='b3select'></input>
+    <input type='submit' style='width:50px; height:50px; background-color: <?php echo $al3color;?>;border:none;' value='level 4' name='b4select'></input>
+  </form>
+    <form method='POST'>
+      <?php for($a=1;$a<26;$a++):?>
+      <input type='submit' style='width:50px; height:50px; background-color: <?php echo $a2[$a];?>;border:none;' value=<?php echo $a ?> name='a2room'></input>
+      <?php endfor ?>
+      </form>
+    </div>
+  <?php endif ?>
+  <?php if (isset($_POST['a2room'])):
+    $roomid="A1".str_pad($_POST['a2room'],2,0,STR_PAD_LEFT);
+    $query1="SELECT * FROM bed WHERE room_id='$roomid' ORDER BY bed_id,availability ";
+    $result1 = mysqli_query($dbconn, $query1) or die ("Error: " . mysqli_error($dbconn));
+    $numrow = mysqli_num_rows($result1);?>
+    <form method="POST">
+    <?php for ($a=0;$a<$numrow;$a++):
+      $row = mysqli_fetch_array($result1);?>
+      <?php if ($row['availability']==1):?>
+        <input type='submit' style='width:50px; height:50px; background-color: green;border:none;' value=<?php echo $a+1 ?> name='bed'></input>
+        <?php endif ?>
+      <?php if ($row['availability']==0): ?>
+        <input type='submit' style='width:50px; height:50px; background-color: red;border:none;' value=<?php echo $a+1 ?> name='bed'></input>
+      <?php endif ?>
+    <?php endfor ?>
+      </form>
+  <?php endif ?>
+  <?php if (isset($_POST['bed'])):
+      $id= $_SESSION['user_id'];
+      $roomid="A0".str_pad($_POST['bed'],2,0,STR_PAD_LEFT);
+      $queryins="INSERT INTO reserve (user_id,room_id) VALUES ('$id','$roomid')";
+      $result2 = mysqli_query($dbconn, $queryins) or die ("Error: " . mysqli_error($dbconn));
+      ?>
+    <?php endif ?>
+  <?php if (isset($_POST['a3select'])&& $al0avail>0):?>
+    <?php $a0click=1;?>
+    
+    <div>
+    <form method='POST'>
+    <input type='submit' style='width:50px; height:50px; background-color: <?php echo $al0color;?>;border:none;' value='level 1' name='b1select'></input>
+    <input type='submit' style='width:50px; height:50px; background-color: <?php echo $al1color;?>;border:none;' value='level 2' name='b2select'></input>
+    <input type='submit' style='width:50px; height:50px; background-color: <?php echo $al2color;?>;border:none;' value='level 3' name='b3select'></input>
+    <input type='submit' style='width:50px; height:50px; background-color: <?php echo $al3color;?>;border:none;' value='level 4' name='b4select'></input>
+  </form>
+    <form method='POST'>
+      <?php for($a=1;$a<26;$a++):?>
+      <input type='submit' style='width:50px; height:50px; background-color: <?php echo $a0[$a];?>;border:none;' value=<?php echo $a ?> name='a0room'></input>
+      <?php endfor ?>
+      </form>
+    </div>
+  <?php endif ?>
+  <?php if (isset($_POST['a0room'])):
+    $roomid="A0".str_pad($_POST['a0room'],2,0,STR_PAD_LEFT);
+    $query1="SELECT * FROM bed WHERE room_id='$roomid' ORDER BY bed_id,availability ";
+    $result1 = mysqli_query($dbconn, $query1) or die ("Error: " . mysqli_error($dbconn));
+    $numrow = mysqli_num_rows($result1);?>
+    <form method="POST">
+    <?php for ($a=0;$a<$numrow;$a++):
+      $row = mysqli_fetch_array($result1);?>
+      <?php if ($row['availability']==1):?>
+        <input type='submit' style='width:50px; height:50px; background-color: green;border:none;' value=<?php echo $a+1 ?> name='bed'></input>
+        <?php endif ?>
+      <?php if ($row['availability']==0): ?>
+        <input type='submit' style='width:50px; height:50px; background-color: red;border:none;' value=<?php echo $a+1 ?> name='bed'></input>
+      <?php endif ?>
+    <?php endfor ?>
+      </form>
+  <?php endif ?>
+  <?php if (isset($_POST['bed'])):
+      $id= $_SESSION['user_id'];
+      $roomid="A0".str_pad($_POST['bed'],2,0,STR_PAD_LEFT);
+      $queryins="INSERT INTO reserve (user_id,room_id) VALUES ('$id','$roomid')";
+      $result2 = mysqli_query($dbconn, $queryins) or die ("Error: " . mysqli_error($dbconn));
+      ?>
+    <?php endif ?>
   <?php if (isset($_POST['b1select'])&& $bl0avail>0):?>
     <?php $b0click=1;?>
     
@@ -301,13 +424,13 @@ $adisp=0;
   </form>
     <form method='POST'>
       <?php for($a=1;$a<26;$a++):?>
-      <input type='submit' style='width:50px; height:50px; background-color: <?php echo $b0[$a];?>;border:none;' value=<?php echo $a ?> name='room'></input>
+      <input type='submit' style='width:50px; height:50px; background-color: <?php echo $b0[$a];?>;border:none;' value=<?php echo $a ?> name='b0room'></input>
       <?php endfor ?>
       </form>
     </div>
   <?php endif ?>
-  <?php if (isset($_POST['room'])):
-    $roomid="B0".str_pad($_POST['room'],2,0,STR_PAD_LEFT);
+  <?php if (isset($_POST['b0room'])):
+    $roomid="B0".str_pad($_POST['b0room'],2,0,STR_PAD_LEFT);
     $query1="SELECT * FROM bed WHERE room_id='$roomid' ORDER BY bed_id,availability ";
     $result1 = mysqli_query($dbconn, $query1) or die ("Error: " . mysqli_error($dbconn));
     $numrow = mysqli_num_rows($result1);?>
@@ -341,13 +464,13 @@ $adisp=0;
   </form>
     <form method='POST' >
       <?php for($a=1;$a<26;$a++):?>
-      <input type='submit' style='width:50px; height:50px; background-color: <?php echo $b1[$a];?>;border:none;' value=<?php echo $a ?> name='room'></input>
+      <input type='submit' style='width:50px; height:50px; background-color: <?php echo $b1[$a];?>;border:none;' value=<?php echo $a ?> name='b1room'></input>
       <?php endfor ?>
       </form>
     </div>
   <?php endif ?>
-  <?php if (isset($_POST['room'])):
-    $roomid="B1".str_pad($_POST['room'],2,0,STR_PAD_LEFT);
+  <?php if (isset($_POST['b1room'])):
+    $roomid="B1".str_pad($_POST['b1room'],2,0,STR_PAD_LEFT);
     $query1="SELECT * FROM bed WHERE room_id='$roomid' ORDER BY bed_id,availability ";
     $result1 = mysqli_query($dbconn, $query1) or die ("Error: " . mysqli_error($dbconn));
     $numrow = mysqli_num_rows($result1);?>
@@ -374,13 +497,13 @@ $adisp=0;
   </form>
     <form method='POST'>
       <?php for($a=1;$a<26;$a++):?>
-      <input type='submit' style='width:50px; height:50px; background-color: <?php echo $b2[$a];?>;border:none;' value=<?php echo $a ?> name='room'></input>
+      <input type='submit' style='width:50px; height:50px; background-color: <?php echo $b2[$a];?>;border:none;' value=<?php echo $a ?> name='b2room'></input>
       <?php endfor ?>
       </form>
     </div>
   <?php endif ?>
-  <?php if (isset($_POST['room'])):
-    $roomid="B2".str_pad($_POST['room'],2,0,STR_PAD_LEFT);
+  <?php if (isset($_POST['b2room'])):
+    $roomid="B2".str_pad($_POST['b2room'],2,0,STR_PAD_LEFT);
     $query1="SELECT * FROM bed WHERE room_id='$roomid' ORDER BY bed_id,availability ";
     $result1 = mysqli_query($dbconn, $query1) or die ("Error: " . mysqli_error($dbconn));
     $numrow = mysqli_num_rows($result1);?>
@@ -405,14 +528,14 @@ $adisp=0;
   </form>
     <form method='POST'>
       <?php for($a=1;$a<26;$a++):?>
-      <input type='submit' style='width:50px; height:50px; background-color: <?php echo $b3[$a];?>;border:none;' value=<?php echo $a ?> name='room'></input>
+      <input type='submit' style='width:50px; height:50px; background-color: <?php echo $b3[$a];?>;border:none;' value=<?php echo $a ?> name='b3room'></input>
       <?php endfor ?>
       </form>
       
     </div>
   <?php endif ?>
-  <?php if (isset($_POST['room'])):
-    $roomid="B3".str_pad($_POST['room'],2,0,STR_PAD_LEFT);
+  <?php if (isset($_POST['b3room'])):
+    $roomid="B3".str_pad($_POST['b3room'],2,0,STR_PAD_LEFT);
     $query1="SELECT * FROM bed WHERE room_id='$roomid' ORDER BY bed_id,availability ";
     $result1 = mysqli_query($dbconn, $query1) or die ("Error: " . mysqli_error($dbconn));
     $numrow = mysqli_num_rows($result1);?>
