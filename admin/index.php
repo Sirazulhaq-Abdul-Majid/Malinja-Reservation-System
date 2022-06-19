@@ -86,18 +86,59 @@ include('../php/dbconn.php');
 $numrow = mysqli_num_rows($result);
 $aavail=0;
 $bavail=0;
+$bl0avail=0;
+$bl1avail=0;
+$bl2avail=0;
+$bl3avail=0;
+$al0avail=0;
+$al1avail=0;
+$al2avail=0;
+$al3avail=0;
 $b="";
 $a="";
 for ($a=0;$a<$numrow;$a++){
     $row = mysqli_fetch_array($result);
     $block=substr($row['room_id'],0,1);
-    if ($block==="B" && $row['availability']==1){
-      $bavail++;
+    $floor=substr($row['room_id'],1,1);
+    if ($block==="B"){  
+      if($floor==0 && $row['availability']==1){
+        $bl0avail++;
+        $bavail++;
+      }
+      else if($floor==1 && $row['availability']==1){
+        $bl1avail++;
+        $bavail++;
+      }
+      else if($floor==2 && $row['availability']==1){
+        $bl2avail++;
+        $bavail++;
+      }
+      else if($floor==3 && $row['availability']==1){
+        $bl3avail++;
+        $bavail++;
+      }
     }
-    else if ($block==="A" && $row['availability']==1){
-      $aavail++;
+    else if ($block==="A"){
+      if($floor===0 && $row['availability']==1){
+        $al0avail++;
+        $aavail++;
+      }
+      else if($floor===1 && $row['availability']==1){
+        $al1avail++;
+        $aavail++;
+      }
+      else if($floor===2 && $row['availability']==1){
+        $al2avail++;
+        $aavail++;
+      }
+      else if($floor===3 && $row['availability']==1){
+        $al3avail++;
+        $aavail++;
+      }
     }
 }
+echo $bl0avail, $bl1avail, $bl2avail, $bl3avail;
+echo $al0avail, $al1avail, $al2avail, $al3avail;
 if ($aavail>=1){
   $a="A";
 }
@@ -114,6 +155,16 @@ else if ($bavail<=0){
 <?php
 $acolor='red';
 $bcolor='red';
+$al0color='red';
+$al1color='red';
+$al2color='red';
+$al3color='red';
+$bl0color='red';
+$bl1color='red';
+$bl2color='red';
+$bl3color='red';
+$bdisp=0;
+$adisp=0;
 ?>
 <select id=block name=block>
   <?php if($a==="A"):?>
@@ -126,11 +177,70 @@ $bcolor='red';
     <?php 
     $bcolor='green'?>
   <?php endif ?>
+  <?php if($bl0avail>0):?>
+    <option value="B0">0</option>
+    <?php 
+    $bl0color='green'?>
+  <?php endif ?>
+  <?php if($bl1avail>0):?>
+    <option value="B1">0</option>
+    <?php 
+    $bl1color='green'?>
+  <?php endif ?>
+  <?php if($bl2avail>0):?>
+    <option value="B2">0</option>
+    <?php 
+    $bl2color='green'?>
+  <?php endif ?>
+  <?php if($bl3avail>0):?>
+    <option value="B3">0</option>
+    <?php 
+    $bl3color='green'?>
+  <?php endif ?>
+  <?php if($al0avail>0):?>
+    <option value="a0">0</option>
+    <?php 
+    $al0color='green'?>
+  <?php endif ?>
+  <?php if($al1avail>0):?>
+    <option value="a1">0</option>
+    <?php 
+    $al1color='green'?>
+  <?php endif ?>
+  <?php if($al2avail>0):?>
+    <option value="a2">0</option>
+    <?php 
+    $al2color='green'?>
+  <?php endif ?>
+  <?php if($al3avail>0):?>
+    <option value="a3">0</option>
+    <?php 
+    $al3color='green'?>
+  <?php endif ?>
 </select>
-<div style='width:50px; height:50px; background-color: <?php echo $acolor;?>;'>
-  </div>
+<form method='POST'>
+<input type='submit' style='width:50px; height:50px; background-color: <?php echo $acolor;?>;' value="A" name='aselect'>
+  </input>
   <br>
-  <div style='width:50px; height:50px; background-color: <?php echo $bcolor;?>;'>
+  <input type='submit' style='width:50px; height:50px; background-color: <?php echo $bcolor;?>;' value="B" name='bselect'>
+  </input>
+  </form>
+  <?php if (isset($_POST['bselect']) && $bavail>0):?>
+  <div>
+    <button style='width:50px; height:50px; background-color: <?php echo $bl0color;?>;'>
+    <button style='width:50px; height:50px; background-color: <?php echo $bl1color;?>;'>
+    <button style='width:50px; height:50px; background-color: <?php echo $bl2color;?>;'>
+    <button style='width:50px; height:50px; background-color: <?php echo $bl3color;?>;'>
+  </button>
+  <?php endif ?>
+  <?php if (isset($_POST['aselect']) && $aavail>0):?>
+  <div>
+    <button style='width:50px; height:50px; background-color: <?php echo $al0color;?>;'>
+    <button style='width:50px; height:50px; background-color: <?php echo $al1color;?>;'>
+    <button style='width:50px; height:50px; background-color: <?php echo $al2color;?>;'>
+    <button style='width:50px; height:50px; background-color: <?php echo $al3color;?>;'>
+  </button>
+  <?php endif ?>
   </div>
       </div>
       <div class="col-12 col-lg-5 p-0 img-digital grid-margin grid-margin-lg-0" data-aos="fade-left">
