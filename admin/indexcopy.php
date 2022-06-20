@@ -166,9 +166,10 @@ if($bavail>0){
         <?php endif ?>
         </form>        
 <?php endif ?>
-<?php echo $_POST['room']; ?>
-//print_r($point);
-//echo $floorl;
+<?php if (isset($_POST['room'])){
+    $_SESSION['room']=$_POST['room'];
+} ?>
+
 
 
 
@@ -177,8 +178,7 @@ if($bavail>0){
 <?php if(isset($_POST['room'])&& $a1[$_POST['room']]=='green'):?>
   <?php 
   //room for floor1
-  echo $floorl;
-  print_r($point);
+  echo $_SESSION['room'];
   $roomid="A0".str_pad($_POST['room'],2,0,STR_PAD_LEFT);
   if(isset($roomid)){
     $_SESSION['room_id']=$roomid;
