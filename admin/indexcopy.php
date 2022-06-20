@@ -102,7 +102,6 @@ for($a=0;$a<$numrow;$a++){
 }
 //print_r($afloors);
 //print_r($bfloors);
-//print_r($a1);
 //print_r($a2);
 //print_r($a3);
 //print_r($a4);
@@ -141,7 +140,9 @@ if($bavail>0){
 <?php endif ?>
 
 <?php if ((isset($floor)||isset($_POST['room'])||$here=1) && $afloors[$floor]=='green'):
-//show room?>
+//show room
+
+?>
         <form method="POST">
         <?php if($_POST['floora']==1):?>
         <?php for($a=1;$a<26;$a++):?>
@@ -163,9 +164,11 @@ if($bavail>0){
             <input type="submit" value=<?php echo $a ?> style='background-color:<?php echo $a4[$a]?>;' id='room' name='room'>
         <?php endfor ?>
         <?php endif ?>
-        </form> 
-        
+        </form>        
 <?php endif ?>
+
+//print_r($point);
+//echo $floorl;
 
 
 
@@ -173,6 +176,9 @@ if($bavail>0){
 
 <?php if(isset($_POST['room'])&& $a1[$_POST['room']]=='green'):?>
   <?php 
+  //room for floor1
+  echo $floorl;
+  print_r($point);
   $roomid="A0".str_pad($_POST['room'],2,0,STR_PAD_LEFT);
   if(isset($roomid)){
     $_SESSION['room_id']=$roomid;
@@ -202,14 +208,6 @@ if($bavail>0){
     ?>
       
   <?php endif ?>
-
-
-  
-
-
-
-
-
 
 
 
