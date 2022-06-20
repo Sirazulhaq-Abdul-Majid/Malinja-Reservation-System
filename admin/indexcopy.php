@@ -41,8 +41,7 @@ $b2=array_fill(1,25,"red");
 $b3=array();
 $b3=array_fill(1,25,"red");
 $b4=array();
-$b4=array_fill(1,25,"red");
-echo 'nenen hariz sedap';  
+$b4=array_fill(1,25,"red"); 
 for($a=0;$a<$numrow;$a++){
     $row = mysqli_fetch_array($result);
     $block=substr($row['room_id'],0,1);
@@ -192,8 +191,7 @@ if($bavail>0){
       <?php endif ?>
   <?php endfor ?>
   </form>
-  <?php endif ?>   
-  <?php echo $_SESSION['room_id'];?>           
+  <?php endif ?>              
   <?php if(isset($_POST['bedavail'])):?>
     <?php 
         $id=$_SESSION['user_id'];
