@@ -166,7 +166,7 @@ if($bavail>0){
         <?php endif ?>
         </form>        
 <?php endif ?>
-
+<?php echo $_POST['room']; ?>
 //print_r($point);
 //echo $floorl;
 
