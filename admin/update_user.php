@@ -55,13 +55,12 @@ $user_id = $_GET['user_id'];
       	<td>Picture</td>
         <td>
           <input type="file" name="file" id="file" />
-          <img src="../images/<?php echo $row['picture'];?>" width="130" height="130">
 	    </td>
       </tr> 
 	  
       <tr> 
         <td colspan="2"><input type="hidden" name="user" value=" <?php echo $user; ?> " />
-        <input type="hidden" name="pic" value="<?php echo $row['picture'];?>" /></td>
+
       </tr>	  
 	  
       <tr> 

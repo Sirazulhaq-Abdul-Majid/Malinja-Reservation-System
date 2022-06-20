@@ -261,6 +261,6 @@ if (isset($_SESSION['bed'])):
     session_unset();
     $_SESSION['username']=$username;
     $_SESSION['user_id']=$userid;
-    header('refresh:3');
+    header('refresh:1');
     ?>
 <?php endif ?>
