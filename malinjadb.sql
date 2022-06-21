@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 20, 2022 at 07:57 AM
+-- Generation Time: Jun 21, 2022 at 04:40 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.0.20
 
@@ -29,7 +29,7 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `bed` (
   `bed_id` varchar(5) NOT NULL,
-  `availability` tinyint(1) NOT NULL,
+  `availability` int(1) NOT NULL,
   `room_id` varchar(5) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -71,6 +71,7 @@ CREATE TABLE `dependant` (
 --
 
 INSERT INTO `dependant` (`dependant_ic`, `name`, `telephone`, `address`, `email`, `relationship`) VALUES
+(2070507082, 'Abdul Majid', 178766547, '15, Medan Berjaya, Taman Coolio, 14300 Nibong Tebal, Pulau Pinang', 'Abdulmajid@gmail.com', 'Father'),
 (20573857861, 'abu', 178499027, 'alihouse', 'abu@abu.abu', 'parent');
 
 -- --------------------------------------------------------
@@ -92,9 +93,7 @@ CREATE TABLE `reserve` (
 --
 
 INSERT INTO `reserve` (`reserve_id`, `timestamp`, `user_id`, `bed_id`, `status`) VALUES
-(44, '2022-06-20 01:05:48', 0, 'A0245', 0),
-(45, '2022-06-20 01:17:06', 0, 'A0245', 0),
-(46, '2022-06-20 01:17:06', 0, 'A0245', 0);
+(104, '2022-06-21 05:29:15', 17, '5', 0);
 
 -- --------------------------------------------------------
 
@@ -119,12 +118,12 @@ INSERT INTO `room` (`room_id`, `total_resident`, `availability`) VALUES
 ('A102', 6, 1),
 ('A212', 6, 0),
 ('A301', 6, 0),
-('B001', 6, 1),
-('B011', 6, 1),
-('B101', 6, 1),
-('B117', 6, 1),
-('B208', 6, 0),
-('B309', 6, 1);
+('B001', 6, 0),
+('B011', 6, 0),
+('B101', 6, 0),
+('B117', 6, 0),
+('B208', 6, 1),
+('B309', 6, 0);
 
 -- --------------------------------------------------------
 
@@ -139,7 +138,7 @@ CREATE TABLE `user` (
   `name` varchar(255) NOT NULL,
   `gender` char(1) NOT NULL,
   `address` varchar(255) NOT NULL,
-  `telephone` int(11) NOT NULL,
+  `telephone` varchar(11) NOT NULL,
   `email` varchar(255) NOT NULL,
   `dependant_ic` bigint(13) NOT NULL,
   `level_id` int(1) NOT NULL DEFAULT 2
@@ -150,8 +149,8 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`user_id`, `username`, `password`, `name`, `gender`, `address`, `telephone`, `email`, `dependant_ic`, `level_id`) VALUES
-(0, 'admin', 'admin ', 'Ahmad', '2', 'Admin', 0, '101010999', 0, 1),
-(14, '2020858112', 'ali', 'ali', '1', 'alihouse', 174877398, 'ali@ali.ali', 20573857861, 2);
+(17, 'admin', 'admin', 'admin', '1', '', '0173077942', 'admin@admin.admin', 20573857861, 1),
+(18, '2020858114', 'zul', 'zul', '1', '15, Medan Berjaya, Taman Coolio, 14300 Nibong Tebal, Pulau Pinang', '0173077947', '2020858114@student.uitm.edu.my', 2070507082, 2);
 
 --
 -- Indexes for dumped tables
@@ -188,7 +187,8 @@ ALTER TABLE `room`
 -- Indexes for table `user`
 --
 ALTER TABLE `user`
-  ADD PRIMARY KEY (`user_id`);
+  ADD PRIMARY KEY (`user_id`),
+  ADD KEY `dependant_ic` (`dependant_ic`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -198,13 +198,13 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `reserve`
 --
 ALTER TABLE `reserve`
-  MODIFY `reserve_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
+  MODIFY `reserve_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=105;
 
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- Constraints for dumped tables
@@ -221,6 +221,12 @@ ALTER TABLE `bed`
 --
 ALTER TABLE `reserve`
   ADD CONSTRAINT `reserve_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`);
+
+--
+-- Constraints for table `user`
+--
+ALTER TABLE `user`
+  ADD CONSTRAINT `user_ibfk_1` FOREIGN KEY (`dependant_ic`) REFERENCES `dependant` (`dependant_ic`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

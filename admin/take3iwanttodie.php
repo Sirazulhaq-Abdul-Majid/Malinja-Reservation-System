@@ -118,9 +118,14 @@ $_SESSION['b3']=$b3;
 $_SESSION['b4']=$b4;
 $_SESSION['afloor']=$afloors;
 $_SESSION['bfloor']=$bfloors;
-//print_r($_SESSION['blockavail']);?>
+//print_r($_SESSION['blockavail']);
+if(isset($_SESSION['warn'])){
+    echo "request limit reached";
+}
+?>
 <form method='POST'>
 <?php $blockavail=$_SESSION['blockavail'];
+echo "block";
 for($a=1;$a<3;$a++):?>
     <?php if($a==1){
         $val="A";
@@ -139,12 +144,14 @@ for($a=1;$a<3;$a++):?>
     <form method='POST'>
     <?php if($_SESSION['block']=="A" && array_search("green",$_SESSION['afloor'])):
         $afloor=$_SESSION['afloor'];
+        echo "floor";
         for ($a=1;$a<5;$a++):?>
             <input type="submit" value=<?php echo $a ?> style='background-color:<?php echo $afloor[$a]?>;' id='floora' name='floora'>
         <?php endfor ?>
     <?php endif ?>
     <?php if($_SESSION['block']=="B" && array_search("green",$_SESSION['bfloor'])):
         $bfloor=$_SESSION['bfloor'];
+        echo "floor";
         for ($a=1;$a<5;$a++):?>
             <input type="submit" value=<?php echo $a ?> style='background-color:<?php echo $bfloor[$a]?>;' id='floorb' name='floorb'>
         <?php endfor ?>
@@ -207,6 +214,7 @@ else if(isset($_POST['floorb'])){
     <form method='POST'>
     <?php
     $room=$_SESSION['room'];
+    echo 'room';
     if (isset($room)):
     for($a=1;$a<26;$a++):?>
         <input type="submit" value=<?php echo $a ?> style='background-color:<?php echo $room[$a]?>;' id='bed' name='bed'>
@@ -232,6 +240,7 @@ if(isset($_SESSION['roomid'])):
     $_SESSION['numrow']=$numrow1;
     ?>
     <form method='POST'>  
+        bed
         <?php for($a=0;$a<$_SESSION['numrow'];$a++):
             $row1 = mysqli_fetch_array($result1);
             if ($row1['availability']==1):?>
@@ -251,16 +260,35 @@ if(isset($_SESSION['roomid'])):
 ?>
 
 <?php 
+if(isset($_SESSION['bed'])){
+$uid=$_SESSION['user_id'];
+$querylimit="SELECT user_id FROM reserve WHERE user_id='$uid'";
+$resultlimit = mysqli_query($dbconn, $querylimit) or die ("Error: " . mysqli_error($dbconn));
+$numrowlimit = mysqli_num_rows($resultlimit);
+$_SESSION['limit']=$numrowlimit;
+}
+?>
+
+<?php 
 if (isset($_SESSION['bed'])):
     $username=$_SESSION['username'];
     $bedid=$_SESSION['room_id'].$_SESSION['bed'];
     echo $bedid;
     $userid=$_SESSION['user_id'];
+    if($_SESSION['limit']<3){
+    
     $query2="INSERT INTO reserve (user_id,bed_id) VALUES ('$userid','$bedid')";
     $result2 = mysqli_query($dbconn, $query2) or die ("Error: " . mysqli_error($dbconn));
+    }
+    else{
+        $warn="request limit reached";
+    }
     session_unset();
     $_SESSION['username']=$username;
     $_SESSION['user_id']=$userid;
-    header('refresh:1');
+    if (isset($warn)){
+        $_SESSION['warn']=$warn;
+    }
+    header('refresh:0');
     ?>
 <?php endif ?>

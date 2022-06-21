@@ -7,3 +7,6 @@
 \* Make website<br>
 \# Make ios app<br>
 / Want to die<br>
+
+
+/*admin view reservation with proper logic
