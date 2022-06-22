@@ -64,8 +64,13 @@ label {
         <form method="POST" action="php/adduser.php">
 <div class="form-group">  
 <H3><b>STUDENT REGISTRATION</b></H3>
-</div>
-        <div class="form-group">         
+</div>  
+        
+        <div class="form-group">  
+        <?php
+                if (isset($_GET['error'])):?>
+                <div style='color:red'><?php echo $_GET['error'];?></div>
+        <?php endif?>       
         <label for="name">Name</label>
         <input type="text" id="name" name="name"><br>
     </div>

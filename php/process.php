@@ -11,7 +11,7 @@ if(isset($_POST['login'])){
 	$username = $_POST['username'];
 	$password = $_POST['password'];
 	
-	$sql= "SELECT username, password, level_id,user_id FROM user WHERE username= '$username' AND password= '$password'";
+	$sql= "SELECT username, password, level_id,user_id FROM user WHERE BINARY username= '$username' AND BINARY password= '$password'";
 	$query = mysqli_query($dbconn, $sql) or die ("Error: " . mysqli_error());
 	$row = mysqli_num_rows($query);
 	if($row == 0){

@@ -273,12 +273,14 @@ $_SESSION['limit']=$numrowlimit;
 if (isset($_SESSION['bed'])):
     $username=$_SESSION['username'];
     $bedid=$_SESSION['room_id'].$_SESSION['bed'];
-    echo $bedid;
     $userid=$_SESSION['user_id'];
     if($_SESSION['limit']<3){
     
     $query2="INSERT INTO reserve (user_id,bed_id) VALUES ('$userid','$bedid')";
     $result2 = mysqli_query($dbconn, $query2) or die ("Error: " . mysqli_error($dbconn));
+    echo '<script type ="text/JavaScript">'; 
+    echo 'alert("Reserve Successfully")'; 
+    echo '</script>'; 
     }
     else{
         $warn="request limit reached";
@@ -288,7 +290,7 @@ if (isset($_SESSION['bed'])):
     $_SESSION['user_id']=$userid;
     if (isset($warn)){
         $_SESSION['warn']=$warn;
-    }
+    } 
     header('refresh:0');
     ?>
 <?php endif ?>

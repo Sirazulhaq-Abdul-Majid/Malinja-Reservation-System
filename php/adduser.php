@@ -21,8 +21,17 @@ if(isset($_POST['signup'])){
     $dependant_email=$_POST['dependant_email'];
     $dependant_relationship=$_POST['dependant_relationship'];
 }
+if(isset($username)||isset($password)||isset($name)||isset($gender)||isset($address)||isset($telephone)||isset($email)||isset($dependant_ic)||isset($dependant_name)||isset($dependant_telephone)||isset($dependant_adress)||isset($dependant_email)||isset($dependant_relationship)){
+    header("Location:../signup.php?error=Please fill out all fields");
+}
 
-
+$query0="SELECT * FROM user WHERE username='$username'";
+$result0=mysqli_query($dbconn,$query0);
+$numrow0 = mysqli_num_rows($result0);
+if($numrow0!=0){
+    header("Location: ../signup.php?error=Account Created");
+}
+else{
     $query1="INSERT INTO dependant(dependant_ic,name,telephone,address,email,relationship) value ('$dependant_ic','$dependant_name','$dependant_telephone','$dependant_adress', '$dependant_email','$dependant_relationship')";
 	$query = "INSERT INTO user ( username , password,name, gender, address,telephone,email,dependant_ic,level_id) values ('$username','$password','$name','$gender','$address','$telephone','$email','$dependant_ic',2)";
     $result = mysqli_query($dbconn, $query1) or die ("Error: " . mysqli_error($dbconn));
@@ -34,4 +43,5 @@ if(isset($_POST['signup'])){
     <button onclick="window.open('../index.php');">Login</button>
     TEXT;
     echo $test;
+}
 ?>
