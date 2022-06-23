@@ -45,5 +45,11 @@ if(isset($_POST['login'])){
 		
 	}	
 }
+else if(isset($_POST['account'])){
+	header("Location:../signup.php");
+}
+else{
+	header("Location:../");
+}
 mysqli_close($dbconn);
 ?>

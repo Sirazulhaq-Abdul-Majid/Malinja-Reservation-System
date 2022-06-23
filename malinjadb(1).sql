@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 22, 2022 at 09:38 AM
+-- Generation Time: Jun 23, 2022 at 03:13 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.0.20
 
@@ -1276,6 +1276,14 @@ CREATE TABLE `reserve` (
   `status` int(11) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `reserve`
+--
+
+INSERT INTO `reserve` (`reserve_id`, `timestamp`, `user_id`, `bed_id`, `status`) VALUES
+(109, '2022-06-22 07:41:00', 17, 'A2094', 0),
+(110, '2022-06-22 07:43:05', 17, 'A1052', 0);
+
 -- --------------------------------------------------------
 
 --
@@ -1567,7 +1575,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `reserve`
 --
 ALTER TABLE `reserve`
-  MODIFY `reserve_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=109;
+  MODIFY `reserve_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=111;
 
 --
 -- AUTO_INCREMENT for table `user`
@@ -1589,7 +1597,8 @@ ALTER TABLE `bed`
 -- Constraints for table `reserve`
 --
 ALTER TABLE `reserve`
-  ADD CONSTRAINT `reserve_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`);
+  ADD CONSTRAINT `reserve_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`),
+  ADD CONSTRAINT `reserve_ibfk_2` FOREIGN KEY (`bed_id`) REFERENCES `bed` (`bed_id`);
 
 --
 -- Constraints for table `user`
