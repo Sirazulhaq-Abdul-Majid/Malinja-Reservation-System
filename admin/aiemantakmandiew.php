@@ -38,18 +38,34 @@ include('../php/dbconn.php');
         echo "</table>";
         echo "</form>";
         
-        
         if(isset($_POST['accept'])){
             $uid=$_SESSION['username'];
             $rid=$_POST['accept'];
             $query0="UPDATE reserve SET status='1' WHERE reserve_id='$rid'";
             $result0=mysqli_query($dbconn,$query0);
-            $query="SELECT * FROM reserve JOIN bed ON reserve.bed_id=bed.bed_id";
+            $query="SELECT * FROM reserve JOIN bed ON reserve.bed_id=bed.bed_id WHERE reserve_id='$rid'";
             $result=mysqli_query($dbconn,$query);
-            for($a=0;$a<3;$a++){
-                $r=mysqli_fetch_array($result);
-                echo $r['room_id'];
+            $row=mysqli_fetch_array($result);
+            $bid=$row['bed_id'];
+            $room_id=$row['room_id'];
+            $query2="UPDATE bed SET availability='0' WHERE bed_id='$bid'";
+            $result2=mysqli_query($dbconn,$query2);
+            $query3="SELECT * FROM bed WHERE room_id='$room_id'";
+            $result3=mysqli_query($dbconn,$query3);
+            $numrow3=mysqli_num_rows($result3);
+            $total=0;
+            for($a=0;$a<$numrow3;$a++){
+                $row3=mysqli_fetch_array($result3);
+                if($row3['availability']==0){
+                    $total++;
+                }
             }
+            if($total==6){
+                $query4="UPDATE room SET availability='0' WHERE room_id='$room_id'";
+                $result4=mysqli_query($dbconn,$query4);
+            }
+            $query5="UPDATE room SET total_resident='$total' WHERE room_id='$room_id'";
+            $result5=mysqli_query($dbconn,$query5);
             session_unset();
             $_SESSION['username']=$uid;
             header('Location:aiemantakmandiew.php');
