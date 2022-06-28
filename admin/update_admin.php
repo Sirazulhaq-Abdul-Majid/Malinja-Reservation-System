@@ -53,9 +53,9 @@ $user_id = $_GET['user_id'];
         <td><input type="password" name="password" size="50" value="<?php echo $row['password']; ?>" /></td> 
       </tr>
 	  <tr>
-      	<td>Picture</td>
+      	<td></td>
         <td>
-          <input type="file" name="file" id="file" />
+          
 	    </td>
       </tr> 
 	  

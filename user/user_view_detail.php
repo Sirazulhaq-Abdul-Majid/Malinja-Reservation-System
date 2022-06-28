@@ -134,7 +134,9 @@ deprelationship
         $result0=mysqli_query($dbconn, $query0) or die ("Error: " . mysqli_error($dbconn));
         $query="UPDATE user SET address='$address', telephone='$phone', email='$email', password='$pass' WHERE user_id='$userid'";
         $result = mysqli_query($dbconn, $query) or die ("Error: " . mysqli_error($dbconn));
-        header("refresh:0");
+        header("Refresh:1");
+        header("location".$_SERVER['PHP_SELF']);
+        //redirect("user_view_detail.php",$userid);
     }
 ?>
 </html>
