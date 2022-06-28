@@ -40,12 +40,11 @@
                             </div>
                             
                              <div class="login-row row forrr no-margin">
-                               <p> <input type="checkbox"> Remember Me</p>
-                               <p><a class="vgh" href="">Forget Password?</a></p>
+                                <text style="color:white">asdfasdfsadfsdafdsfa<br>asdf</text>
                             </div>
 
                              <div class="login-row btnroo row no-margin">
-                               <button class="btn btn-primary btn-sm" name="login"> Sign In</button>
+                               <button class="btn btn-primary btn-sm" name="login" > Sign In</button>
                                
                             </div>
                             </form>
