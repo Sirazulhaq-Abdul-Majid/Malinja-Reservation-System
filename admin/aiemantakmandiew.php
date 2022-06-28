@@ -7,7 +7,7 @@ if (!isset($_SESSION['username'])) {
 }
 ?>
 <?php
-
+ob_start();
 include('../php/dbconn.php');
 
         include ("../php/session.php");

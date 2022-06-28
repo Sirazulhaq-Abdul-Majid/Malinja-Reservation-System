@@ -4,6 +4,7 @@
     <script src="js/readonly.js"></script>
 </head>
 <?php 
+    ob_start();
     include ("../php/session.php");
     include('../php/dbconn.php');
     session_start();
@@ -134,8 +135,10 @@ deprelationship
         $result0=mysqli_query($dbconn, $query0) or die ("Error: " . mysqli_error($dbconn));
         $query="UPDATE user SET address='$address', telephone='$phone', email='$email', password='$pass' WHERE user_id='$userid'";
         $result = mysqli_query($dbconn, $query) or die ("Error: " . mysqli_error($dbconn));
-        header("Refresh:1");
-        header("location".$_SERVER['PHP_SELF']);
+        //header("Refresh:1");
+        header("Location:user_view_detail.php");
+        //header('Location: '.$_SERVER['PHP_SELF']);
+        //die;
         //redirect("user_view_detail.php",$userid);
     }
 ?>

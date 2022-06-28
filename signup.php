@@ -56,7 +56,7 @@ label {
     <div class="container">
     <div class="signup-content">
     <div class="signup-img">
-    <img src="resources/ora.jpg" alt="" style="height:840px">
+    <img src="resources/ora.jpg" alt="" style="height:99%">
     </div>
     <div class="signup-form">
    
@@ -69,8 +69,11 @@ label {
         <div class="form-group">  
         <?php
                 if (isset($_GET['error'])):?>
-                <div style='color:red'><?php echo $_GET['error'];?></div>
-        <?php endif?>       
+                        <div style='color:red'><?php echo $_GET['error'];?></div>
+                <?php endif ?>
+                <?php if (isset($_GET['success'])):?>
+                <div style='color:green'><?php echo $_GET['success'];?></div>
+        <?php endif ?>
         <label for="name">Name</label>
         <input type="text" id="name" name="name"><br>
     </div>
