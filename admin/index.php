@@ -19,6 +19,7 @@ if (!isset($_SESSION['username'])) {
   <link rel="stylesheet" href="vendors/mdi/css/materialdesignicons.min.css">
   <link rel="stylesheet" href="vendors/aos/css/aos.css">
   <link rel="stylesheet" href="css/style.min.css">
+  <link rel="stylesheet" href="css/bookBox.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 
 </head>
@@ -262,33 +263,53 @@ $adisp=0;
     $al3color='green'?>
   <?php endif ?>
 </select>
-<form method='POST'>
-<input type='submit' style='width:50px; height:50px; background-color: <?php echo $acolor;?>;border:none;' value="A" name='aselect'>
-  </input>
-  <br>
-  <input type='submit' style='width:50px; height:50px; background-color: <?php echo $bcolor;?>;border:none;' value="B" name='bselect'>
-  </input>
-  </form>
-  <?php if (isset($_POST['bselect']) && $bavail>0):?>
-  <div>
-  <form method='POST'>
-    <input type='submit' style='width:50px; height:50px; background-color: <?php echo $bl0color;?>;border:none;' value='level 1' name='b1select'></input>
-    <input type='submit' style='width:50px; height:50px; background-color: <?php echo $bl1color;?>;border:none;' value='level 2' name='b2select'></input>
-    <input type='submit' style='width:50px; height:50px; background-color: <?php echo $bl2color;?>;border:none;' value='level 3' name='b3select'></input>
-    <input type='submit' style='width:50px; height:50px; background-color: <?php echo $bl3color;?>;border:none;' value='level 4' name='b4select'></input>
-  </form>
+
+  <div class="book_container">
+
+    <div class="blk_btn">
+      <form method='POST'>
+        <input type='submit' class="blk_A" style='background-color: <?php echo $acolor;?>' value="Block A" name='aselect'>
+      </input>
+      <br>
+      <br>
+        <input type='submit' class="blk_B" style='background-color: <?php echo $bcolor;?>' value="Block B" name='bselect'>
+      </input>
+      </form>
+    </div>
+    
+      <div class="flr_btn">
+        <?php if (isset($_POST['bselect']) && $bavail>0):?>
+        <div>
+          <form method='POST'>
+          <input type='submit' style='width:50px; height:50px; background-color: <?php echo $bl0color;?>;border:none;' value='level 1' name='b1select'></input>
+          <input type='submit' style='width:50px; height:50px; background-color: <?php echo $bl1color;?>;border:none;' value='level 2' name='b2select'></input>
+          <input type='submit' style='width:50px; height:50px; background-color: <?php echo $bl2color;?>;border:none;' value='level 3' name='b3select'></input>
+          <input type='submit' style='width:50px; height:50px; background-color: <?php echo $bl3color;?>;border:none;' value='level 4' name='b4select'></input>
+          </form>
+        </div>
+        <?php endif ?>
+
+        <?php if (isset($_POST['aselect']) && $aavail>0):?>
+          <div>
+            <form method='POST'>
+            <input type='submit' style='width:50px; height:50px; background-color: <?php echo $al0color;?>;border:none;' value='level 1' name='a1select'></input>
+            <input type='submit' style='width:50px; height:50px; background-color: <?php echo $al1color;?>;border:none;' value='level 2' name='a2select'></input>
+            <input type='submit' style='width:50px; height:50px; background-color: <?php echo $al2color;?>;border:none;' value='level 3' name='a3select'></input>
+            <input type='submit' style='width:50px; height:50px; background-color: <?php echo $al3color;?>;border:none;' value='level 4' name='a4select'></input>
+            </form>
+          </div>
+          <?php endif ?>
+          
+      </div>
+
+      <div class="plan">
+
+      </div>
   </div>
-  <?php endif ?>
-  <?php if (isset($_POST['aselect']) && $aavail>0):?>
-  <div>
-    <form method='POST'>
-    <input type='submit' style='width:50px; height:50px; background-color: <?php echo $al0color;?>;border:none;' value='level 1' name='a1select'></input>
-    <input type='submit' style='width:50px; height:50px; background-color: <?php echo $al1color;?>;border:none;' value='level 2' name='a2select'></input>
-    <input type='submit' style='width:50px; height:50px; background-color: <?php echo $al2color;?>;border:none;' value='level 3' name='a3select'></input>
-    <input type='submit' style='width:50px; height:50px; background-color: <?php echo $al3color;?>;border:none;' value='level 4' name='a4select'></input>
-    </form>
-  </div>
-  <?php endif ?>
+
+  
+  
+  
   <?php if (isset($_POST['a1select'])&& $al1avail>0):?>
     <?php $a0click=1;?>
     
@@ -588,7 +609,7 @@ $adisp=0;
   </div>
       </div>
       <div class="col-12 col-lg-5 p-0 img-digital grid-margin grid-margin-lg-0" data-aos="fade-left">
-      <img src="images/image.png" alt="" class="img-fluid" style="margin-top:-120px;width:400px; margin-left:800px;">
+      <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><img src="images/image.png" alt="" class="img-fluid" style="margin-top:-120px;width:400px; margin-left:800px;">
 </div>
     </div>
   </div>
