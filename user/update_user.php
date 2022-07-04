@@ -60,6 +60,7 @@
     </div> 
     </nav>   
   </header>
+
 <?php 
     ob_start();
     include ("../php/session.php");
@@ -102,35 +103,58 @@
     $_SESSION['depemail']=$row1['email'];
     $_SESSION['deprelationship']=$row1['relationship'];
 ?>
-  
-    <div class="container">
+<div class="container">
     <div class="col-12 col-lg-7 grid-margin grid-margin-lg-0" data-aos="fade-right" style="margin-left:360px;">
-      <h1 class="font-weight-semibold">USER PROFILE</h1>
+      <h1 class="font-weight-semibold">UPDATE USER PROFILE</h1>
       </div>
-<div class="wrapper" >
-<form method="POST" data-aos="fade-right" style="margin-left:380px; height:460px;  ">
-Address :
-<?php echo $_SESSION['address']?><br>
-Telephone :
-<?php echo $_SESSION['telephone']?><br>
-Email :
-<?php echo $_SESSION['email']?><br>
-Dependant IC :
-<?php echo $_SESSION['dependantic']?><br>
-Password :
-<?php echo $_SESSION['pass']?><br>
-Dependant Name :
-<?php echo $_SESSION['depname']?><br>
-Dependant Telephone :
-<?php echo $_SESSION['deptelephone']?><br>
-Dependant Address :
-<?php echo $_SESSION['depaddress']?><br>
-Dependant Email :
-<?php echo $_SESSION['depemail']?><br>
-Dependant Relationship :
-<?php echo $_SESSION['deprelationship']?><br>
-<button style:"decoration=none;"><a class="one" href="update_user.php?user_id=<?php echo $row['user_id'];?>">Edit</a></button>
+
+<form method="POST" style="margin-left:360px;">
+<table width="80%" border="0" style="margin-left-120px;" >
+<tr>
+<td width="30%">Address </td>
+<td width="50%"><input type='text' id='address' name='address' value=<?php echo $_SESSION['address']?> size=40></td>
+</tr>
+<tr>
+<td width="30%">Telephone</td>
+<td width="50%"><input type='text'  id='telephone' name='telephone' value=<?php echo $_SESSION['telephone']?>></td>
+<tr>
+<td width="30%">Email</td>
+<td width="50%"><input type='text'  id='email' name='email' value=<?php echo $_SESSION['email']?> size=40></td>
+</tr>
+<tr>
+<td width="30%">Depandant IC</td>
+<td width="50%"><input type='text'  id='dependantic' name='dependantic' value=<?php echo $_SESSION['dependantic']?> size=40></td>
+</tr>
+<tr>
+<td width="30%">Password</td>
+<td width="50%"><input type='text'  id='pass' name='pass' value=<?php echo $_SESSION['pass']?> size=40></td>
+</tr>
+<tr>
+<td width="30%">Dependant Name</td>
+<td width="50%"><input type='text' id='depname' name='depname' value=<?php echo $_SESSION['depname']?> size=40></td>
+</tr>
+<tr>
+<td width="30%">Dependant Telephone</td>
+<td width="50%"><input type='text' ' id='deptele' name='deptele' value=<?php echo $_SESSION['deptelephone']?> size=40></td>
+</tr>
+<tr>
+<td width="30%">Dependant Address</td>
+<td width="50%"><input type='text' id='depadd' name='depadd' value=<?php echo $_SESSION['depaddress']?> size=40></td>
+</tr>
+<tr>
+<td width="30%">Dependant Email</td>
+<td width="50%"><input type='text'  id='depemail' name='depemail' value=<?php echo $_SESSION['depemail']?> size=40></td>
+</tr>
+<tr>
+<td width="30%">Dependant Relationship</td>
+<td width="50%"><input type='text'  id='deprel' name='deprel' value=<?php echo $_SESSION['deprelationship']?> size=40></td>
+</tr>
+<tr>
+<td ><input type='submit' id='allsave' name='allsave'></td>
+</tr>
+</table>
 </form>
+
 <?php 
     if(isset($_POST['allsave'])){
         $address=$_POST['address'];
@@ -156,11 +180,7 @@ Dependant Relationship :
         //redirect("user_view_detail.php",$userid);
     }
 ?>
-
-      
-      </div>  
-    
-    <footer class="border-top" style="position:relative;">
+ <footer class="border-top">
       <p class="text-center text-muted pt-4">Copyright © 2022 Malinja Room Reservation System.</p>
     </footer>
 
