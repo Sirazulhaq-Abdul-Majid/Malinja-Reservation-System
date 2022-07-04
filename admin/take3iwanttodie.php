@@ -7,7 +7,7 @@ if (!isset($_SESSION['username'])) {
 }
 ?>
 <?php
-
+ob_start();
 include('../php/dbconn.php');
 
           include ("../php/session.php");
@@ -291,6 +291,6 @@ if (isset($_SESSION['bed'])):
     if (isset($warn)){
         $_SESSION['warn']=$warn;
     } 
-    header('refresh:0');
+    header('Location:take3iwanttodie.php');
     ?>
 <?php endif ?>
