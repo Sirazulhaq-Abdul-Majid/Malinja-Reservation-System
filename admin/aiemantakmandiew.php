@@ -68,6 +68,8 @@ include('../php/dbconn.php');
             $result5=mysqli_query($dbconn,$query5);
             session_unset();
             $_SESSION['username']=$uid;
+            $query4="DELETE FROM reserve WHERE bed_id='$bid' AND status=0";
+            $result4=mysqli_query($dbconn,$query4);
             header('Location:aiemantakmandiew.php');
         }
         

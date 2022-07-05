@@ -10,7 +10,6 @@ if (!isset($_SESSION['username'])) {
 include('../php/dbconn.php');
 include ("../php/session.php");
 $uid=$_SESSION['user_id'];
-
 $q="SELECT * FROM reserve WHERE user_id='$uid' ORDER BY timestamp";
 $result=mysqli_query($dbconn,$q);
 $numrow=mysqli_num_rows($result);?>

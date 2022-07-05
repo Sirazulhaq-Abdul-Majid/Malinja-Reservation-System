@@ -1,61 +1,22 @@
-<?php
-include('../php/dbconn.php');
+<?php 
+session_start();
+	$con=mysqli_connect('localhost','root','','malinjadb') or die(mysqli_error($con));
 
-$i=0;
+		$address=$_POST['address'];
+		$gender=$_POST['gender'];
+		$phone=$_POST['phone'];
+		$email=$_POST['email'];
+		$pass=$_POST['password'];
+		$name=$_POST['name'];
+		$uid=$_GET['userid'];
 
-foreach ( $_POST as $sForm => $value )
-{
-	$postedValue = htmlspecialchars( stripslashes( $value ), ENT_QUOTES ) ;
-    $valuearr[$i] = $postedValue; 
-$i++;
-}
+		$query="UPDATE user SET name='$name',gender='$gender',email='$email',telephone='$phone',address='$address',password='$pass' WHERE user_id='$uid'";
+		$result = mysqli_query($con, $query) or die ("Error: " . mysqli_error($dbconn));
 
-$path = '\xampp\htdocs\coffeehouse\images/';
-$pic = $_FILES["file"]["name"];
-$tmplocation = $_FILES["file"]["tmp_name"];
-  
-	if ($pic=='')
-    {
-      echo $pic . " already exists. ";
-	  $update = "UPDATE user SET
-				name='$valuearr[0]',
-				gender='$valuearr[1]',
-				email='$valuearr[2]',
-				telephone='$valuearr[3]',
-				address='$valuearr[4]',
-				password='$valuearr[6]',
-				picture='$valuearr[8]'
-				WHERE username='$valuearr[5]'";
-	  //echo $update;
-	  $result = mysqli_query($dbconn, $update) or die ("Error: " . mysqli_error($dbconn));
-	  if ($result) {
-	  ?>
-	  <script type="text/javascript">
-	  	window.location = "index.php"
-	  </script>
-	  <?php }
-    }
-    else
-    {
-      move_uploaded_file($tmplocation, $path . $pic);
-
-	  $update = "UPDATE user SET
-				name='$valuearr[0]',
-				gender='$valuearr[1]',
-				email='$valuearr[2]',
-				telephone='$valuearr[3]',
-				address='$valuearr[4]',
-				password='$valuearr[6]',
-				picture='$pic'
-				WHERE username='$valuearr[5]'";
-	  //echo $update;
-	  $result = mysqli_query($dbconn, $update) or die ("Error: " . mysqli_error($dbconn));
-
-	  if ($result) {
-	  ?>
-	  <script type="text/javascript">
-	  	window.location = "update_user.php"
-	  </script>
-	  <?php }       
-     } 
+		mysqli_query($con,$query);
+		mysqli_close($con);
+		header("Location:users.php");
+        
+        
+    
 ?>

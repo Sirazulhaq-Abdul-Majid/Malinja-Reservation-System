@@ -7,17 +7,18 @@ $user = $_SESSION['username'];
 if (!isset($_SESSION['username'])) {
         header('Location: ../');
 		} 
-$user_id = $_GET['user_id'];		
+$user_id = $_GET['user_id'];	
 ?>
 
 <?php
 	$query = "SELECT * FROM user WHERE user_id='$user_id'";
+  
 	$result = mysqli_query($dbconn, $query) or die ("Error: " . mysqli_error($dbconn));
 	$row = mysqli_fetch_array($result);
 ?>
 <fieldset>
 
-<form name="edit_user" method="post" action="db_update_user.php" enctype="multipart/form-data">
+<form name="edit_user" method="POST" action="db_update_user.php?userid=<?php echo $user_id;?>">
     <table width="80%" border="0" align="center">
       <tr>
         <td width="16%">Name</td>  
