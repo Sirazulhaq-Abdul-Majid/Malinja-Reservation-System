@@ -138,6 +138,25 @@ for($a=1;$a<3;$a++):?>
 </form>
 <?php if(isset($_POST['block'])){
     $_SESSION['block']=$_POST['block'];
+    $ba=$_SESSION['blockavail'];
+    if ($_SESSION['block']=='A'){
+        if ($ba[1]=="red"){
+            echo '<script type ="text/JavaScript">';  
+            echo 'alert("Not Available!")';  
+            echo '</script>';  
+        }
+    }
+    if ($_SESSION['block']=='B'){
+        if ($ba[2]=="red"){
+            echo '<script type ="text/JavaScript">';  
+            echo 'alert("Not Available!")';  
+            echo '</script>';  
+        }
+    }
+    //echo $_SESSION['block'];
+    if (isset($_SESSION['roomid'])){
+        unset($_SESSION['roomid']); 
+    }
 }?>
 
 <?php if(isset($_SESSION['block'])):?>
@@ -145,14 +164,22 @@ for($a=1;$a<3;$a++):?>
     <?php if($_SESSION['block']=="A" && array_search("green",$_SESSION['afloor'])):
         $afloor=$_SESSION['afloor'];
         echo "floor";
-        for ($a=1;$a<5;$a++):?>
+        for ($a=1;$a<5;$a++):
+            if ($a==1):?>
+                <input type="submit" value="GF" style='background-color:<?php echo $afloor[$a]?>;' id='floora' name='floora'>
+                <?php continue; ?>
+            <?php endif ?>
             <input type="submit" value=<?php echo $a ?> style='background-color:<?php echo $afloor[$a]?>;' id='floora' name='floora'>
         <?php endfor ?>
     <?php endif ?>
     <?php if($_SESSION['block']=="B" && array_search("green",$_SESSION['bfloor'])):
         $bfloor=$_SESSION['bfloor'];
         echo "floor";
-        for ($a=1;$a<5;$a++):?>
+        for ($a=1;$a<5;$a++):
+            if ($a==1):?>
+                <input type="submit" value="GF" style='background-color:<?php echo $bfloor[$a]?>;' id='floorb' name='floorb'>
+                <?php continue; ?>
+            <?php endif ?>
             <input type="submit" value=<?php echo $a ?> style='background-color:<?php echo $bfloor[$a]?>;' id='floorb' name='floorb'>
         <?php endfor ?>
     <?php endif ?>
@@ -162,14 +189,37 @@ for($a=1;$a<3;$a++):?>
 <?php if(isset($_POST['floora'])){
     $_SESSION['block']="A";
     $_SESSION['floor']=$_POST['floora'];
+    if ($_SESSION['floor']=='GF'){
+        $_SESSION['floor']=1;
+    }
+    if (isset($_SESSION['roomid'])){
+        unset($_SESSION['roomid']); 
+    }
     //echo $_SESSION['block'];
-    //echo $_SESSION['floor'];
+    $aflo=$_SESSION['afloor'];
+    if ($aflo[$_SESSION['floor']]=='red'){
+        echo '<script type ="text/JavaScript">';  
+        echo 'alert("Not Available!")';  
+        echo '</script>';  
+    }
 }
 else if(isset($_POST['floorb'])){
     $_SESSION['block']="B";
     $_SESSION['floor']=$_POST['floorb'];
+    if ($_SESSION['floor']=='GF'){
+        $_SESSION['floor']=1;
+    }
+    if (isset($_SESSION['roomid'])){
+        unset($_SESSION['roomid']); 
+    }
     //echo $_SESSION['block'];
     //echo $_SESSION['floor'];
+    $aflo=$_SESSION['bfloor'];
+    if ($aflo[$_SESSION['floor']]=='red'){
+        echo '<script type ="text/JavaScript">';  
+        echo 'alert("Not Available!")';  
+        echo '</script>';  
+    }
 }
 ?>
 <?php if(isset($_SESSION['floor'])):
@@ -182,13 +232,13 @@ else if(isset($_POST['floorb'])){
         if($floor==1 && $afloor[$floor]=='green'){
             $_SESSION['room']=$_SESSION['a1'];
         }
-        if($floor==2 && $afloor[$floor]=='green'){
+        else if($floor==2 && $afloor[$floor]=='green'){
             $_SESSION['room']=$_SESSION['a2'];
         }
-        if($floor==3 && $afloor[$floor]=='green'){
+        else if($floor==3 && $afloor[$floor]=='green'){
             $_SESSION['room']=$_SESSION['a3'];
         }
-        if($floor==4 && $afloor[$floor]=='green'){
+        else if($floor==4 && $afloor[$floor]=='green'){
             $_SESSION['room']=$_SESSION['a4'];
         }
         //print_r($_SESSION['room']);
@@ -226,6 +276,12 @@ else if(isset($_POST['floorb'])){
 <?php 
 if(isset($_POST['bed'])){
     $_SESSION['roomid']=$_POST['bed'];
+    $r=$_SESSION['room'];
+    if ($r[$_SESSION['roomid']]=='red'){
+        echo '<script type ="text/JavaScript">';  
+        echo 'alert("Not Available!")';  
+        echo '</script>';  
+    }
 }
 ?>
 
@@ -236,6 +292,9 @@ if(isset($_SESSION['roomid'])):
     $_SESSION['room_id']=$roomid;
     $query1="SELECT * FROM bed WHERE room_id='$roomid' ORDER BY bed_id,availability";
     $result1 = mysqli_query($dbconn, $query1) or die ("Error: " . mysqli_error($dbconn));
+    $query2="SELECT * FROM room WHERE room_id='$roomid'";
+    $result2=mysqli_query($dbconn,$query2) or die ("Error:".mysqli_error($dbconn));
+    $row2=mysqli_fetch_array($result2);
     $numrow1 = mysqli_num_rows($result1);
     $_SESSION['numrow']=$numrow1;
     ?>
@@ -243,11 +302,13 @@ if(isset($_SESSION['roomid'])):
         bed
         <?php for($a=0;$a<$_SESSION['numrow'];$a++):
             $row1 = mysqli_fetch_array($result1);
-            if ($row1['availability']==1):?>
-                <input type="submit" value=<?php echo $a+1 ?> style='background-color:green;' id='bed' name='final'>
-            <?php endif ?>
-            <?php if ($row1['availability']==0):?>
-                <input type="submit" value=<?php echo $a+1 ?> style='background-color:red;'>
+            if($row2['total_resident']<6):
+                if ($row1['availability']==1):?>
+                    <input type="submit" value=<?php echo $a+1 ?> style='background-color:green;' id='bed' name='final'>
+                <?php endif ?>
+                <?php if ($row1['availability']==0):?>
+                    <input type="submit" value=<?php echo $a+1 ?> style='background-color:red;'>
+                <?php endif ?>
             <?php endif ?>
         <?php endfor ?>  
     </form>
