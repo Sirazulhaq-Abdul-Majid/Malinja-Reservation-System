@@ -1,0 +1,40 @@
+.main{
+    padding-right: 275px;
+    padding-left: 275px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.book-container{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 500px;
+    padding-top: 30px;
+    padding-right: 60px;
+    padding-left: 15px;
+    padding-bottom: 5px;
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: auto;
+    margin-bottom: auto;
+    border: 5px solid black;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.block-container{
+    height: 50%;
+    color: blue;
+}
+
+.floor-container{
+    height: 50%;
+}
+
+.room-container{
+    width: 50%;
+    height: 80%;
+    border: 3px solid gray;
+    margin-left: auto;
+}
