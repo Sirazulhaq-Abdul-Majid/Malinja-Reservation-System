@@ -58,6 +58,7 @@
   width: 490px;
 }
 
+
 body{
     
   height: 100%;
@@ -171,7 +172,7 @@ body{
 <div class="col-lg-11">
 <div class="card shadow-sm">
 <div class="card-header bg-transparent border-0">
-<h3 class="mb-0"><i class="far fa-clone pr-1"></i>USER</h3>
+<h3 class="mb-0"><i class="fa fa-user-circle pr-1"></i>USER</h3>
 </div>
 <div class="card-body pt-0">
 <table class="table table-bordered">
@@ -203,7 +204,7 @@ body{
 <div class="col-lg-13">
 <div class="card shadow-sm">
 <div class="card-header bg-transparent border-0">
-<h3 class="mb-0"><i class="far fa-clone pr-1"></i>Dependant</h3>
+<h3 class="mb-0"><i class="fa fa-user pr-1"></i>Dependant</h3>
 </div>
 <div class="card-body pt-0">
 <table class="table table-bordered">
@@ -240,10 +241,12 @@ body{
 </table>
 </div>
 </div>
-            
+
 <div class="wow">
-<button class="edit" style:"decoration=none; "><a class="one" href="update_user.php?user_id=<?php echo $row['user_id'];?>">Edit</a></button>
-            </div> 
+  <button type="button" class="edit" id = "edit" style="decoration=none;" onclick="window.open('update_user.php?user_id=<?php echo $row['user_id'];?>', '_self')"><a class="one" href="update_user.php?user_id=<?php echo $row['user_id'];?>">Edit</a></button>
+</div> 
+
+
 </form>
 <?php 
     if(isset($_POST['allsave'])){

@@ -133,7 +133,12 @@
     grid-row-start: 6;
 }
 
-
+.error{
+    margin-top: -451px;
+    width: 100%;
+    position: absolute;
+    margin-right: -1246px;
+}
 
 
 

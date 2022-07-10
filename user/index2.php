@@ -15,43 +15,6 @@
   <link rel="stylesheet" href="css/style.min.css">
   <link rel="stylesheet" href="css/stylebook.css">
 
-  <style>
-
-body{
-    background-image: url(images/bg3.png);
-    background-size: cover;
-}
-
-
-.accept{
-    border-radius: 8px;
-  color:#000000;
-  background-color:#90EE90;
-  width: 100px;
-  
-}
-
-.reject{
-border-radius: 8px;  
-  color:#00000;
-  background-color:#e56b6b;
-  width: 100px;
-  
-}
-
-table {
-    width: 100%;
-    background-color: #CBC3E3;
-       
-}
-
-table.oya {
-    border: 1px solid black;
-}
-
-
-
-</style>
 </head>
 <body id="body" data-spy="scroll" data-target=".navbar" data-offset="100">
   <header id="header-section">
@@ -216,10 +179,13 @@ $_SESSION['b4']=$b4;
 $_SESSION['afloor']=$afloors;
 $_SESSION['bfloor']=$bfloors;
 //print_r($_SESSION['blockavail']);
-if(isset($_SESSION['warn'])){
-    echo "request limit reached";
-}
-?>
+if(isset($_SESSION['warn'])):?>
+  <div class="error">
+  request limit reached
+  </div>
+
+<?php endif ?>
+
 <div class="block-container">
   Block
 <form method='POST'>
@@ -256,6 +222,18 @@ for($a=1;$a<3;$a++):?>
     //echo $_SESSION['block'];
     if (isset($_SESSION['roomid'])){
         unset($_SESSION['roomid']); 
+    }
+    if (isset($_SESSION['room'])){
+      unset($_SESSION['room']);
+    }
+    if(isset($_SESSION['floora'])){
+      unset($_SESSION['floora']);
+    }
+    if(isset($_SESSION['floorb'])){
+      unset($_SESSION['floorb']);
+    }
+    if(isset($_SESSION['floor'])){
+      unset($_SESSION['floor']);
     }
 }?>
 
@@ -415,7 +393,10 @@ if(isset($_SESSION['roomid'])):
             $row1 = mysqli_fetch_array($result1);
             if($row2['total_resident']<6):
                 if ($row1['availability']==1):?>
-                    <input type="submit" value=<?php echo $a+1 ?> style='background-color:green;' id='bed' name='final'>
+                <div class="bed">
+                <input type="submit" value=<?php echo $a+1 ?> style='background-color:green;' id='bed' name='final'>
+                </div>
+                    
                 <?php endif ?>
                 <?php if ($row1['availability']==0):?>
                     <input type="submit" value=<?php echo $a+1 ?> style='background-color:red;'>
@@ -463,7 +444,7 @@ if (isset($_SESSION['bed'])):
     if (isset($warn)){
         $_SESSION['warn']=$warn;
     } 
-    header('Location:take3iwanttodie.php');
+    header('Location:index2.php');
     ?>
 <?php endif ?>
 
