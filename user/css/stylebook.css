@@ -30,11 +30,110 @@
 
 .floor-container{
     height: 50%;
+    padding-left: 15px;
 }
 
 .room-container{
-    width: 50%;
-    height: 80%;
+    width: 600px;
+    height: 350px;
     border: 3px solid gray;
-    margin-left: auto;
+    margin-left: auto;   
 }
+
+.building-border{
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-columns: auto auto auto auto auto auto auto auto auto;
+    grid-template-rows: auto auto auto auto auto auto auto;
+}
+
+.room1{
+    grid-column-start: 1;
+    grid-row-start: 2;
+}
+
+.room2{
+    grid-column-start: 1;
+    grid-row-start: 1;
+}
+
+.room11{
+    grid-column-start: 9;
+    grid-row-start: 2;
+}
+
+.room12{
+    grid-column-start: 9;
+    grid-row-start: 3;
+}
+
+.room13{
+    grid-column-start: 9;
+    grid-row-start: 4;
+}
+
+.room14{
+    grid-column-start: 9;
+    grid-row-start: 5;
+}
+
+.room15{
+    grid-column-start: 9;
+    grid-row-start: 6;
+}
+
+.room16{
+    grid-column-start: 9;
+    grid-row-start: 7;
+}
+
+.room17{
+    grid-column-start: 8;
+    grid-row-start: 7;
+}
+
+.room18{
+    grid-column-start: 7;
+    grid-row-start: 7;
+}
+
+.room19{
+    grid-column-start: 6;
+    grid-row-start: 7;
+}
+
+.room20{
+    grid-column-start: 5;
+    grid-row-start: 7;
+}
+
+.room21{
+    grid-column-start: 4;
+    grid-row-start: 7;
+}
+
+.room22{
+    grid-column-start: 3;
+    grid-row-start: 7;
+}
+
+.room23{
+    grid-column-start: 2;
+    grid-row-start: 7;
+}
+
+.room24{
+    grid-column-start: 1;
+    grid-row-start: 7;
+}
+
+.room25{
+    grid-column-start: 1;
+    grid-row-start: 6;
+}
+
+
+
+
+

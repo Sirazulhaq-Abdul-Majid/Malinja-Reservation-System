@@ -12,12 +12,69 @@
   <link rel="stylesheet" href="vendors/mdi/css/materialdesignicons.min.css">
   <link rel="stylesheet" href="vendors/aos/css/aos.css">
   <link rel="stylesheet" href="css/style.min.css">
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,900&display=swap" rel="stylesheet">
+<!-- Bootstrap CSS -->
+<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css'>
+<!-- Font Awesome CSS -->
+<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css'>
 
 <style>
 .wrapper{
   width:100%;
   box-shadow:0 0 5px rgba(0,0,0..10);
 }
+
+.student-profile .card h3 {
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.student-profile .card p {
+    font-size: 16px;
+    color: #000;
+}
+
+.student-profile .table th,
+.student-profile .table td {
+    font-size: 14px;
+    padding: 5px 10px;
+    color: #000;
+}
+
+.student-profile .card {
+    border-radius: 10px;
+}
+
+.edit {
+  padding:0.6em 2em;
+  border-radius: 8px;
+  color:#000000;
+  background-color:#ADD8E6;
+  font-size:1.1em;
+  border:0;
+  cursor:pointer;
+  margin:1em;
+  width: 490px;
+}
+
+body{
+    
+  height: 100%;
+  background-image: url(images/bg3.png);
+  
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  
+}
+
+.wow{
+  margin: auto;
+  width: 50%;
+}
+
+
 
 </style>
 </head>
@@ -103,33 +160,90 @@
     $_SESSION['deprelationship']=$row1['relationship'];
 ?>
   
-    <div class="container">
-    <div class="col-12 col-lg-7 grid-margin grid-margin-lg-0" data-aos="fade-right" style="margin-left:360px;">
-      <h1 class="font-weight-semibold">USER PROFILE</h1>
-      </div>
+<div class="container">
+<div class="col-12 col-lg-7 grid-margin grid-margin-lg-0" data-aos="fade-right" style="margin-left:450px;">
+<h1 class="font-weight-semibold">PROFILE</h1>
+</div>
 <div class="wrapper" >
-<form method="POST" data-aos="fade-right" style="margin-left:380px; height:460px;  ">
-Address :
-<?php echo $_SESSION['address']?><br>
-Telephone :
-<?php echo $_SESSION['telephone']?><br>
-Email :
-<?php echo $_SESSION['email']?><br>
-Dependant IC :
-<?php echo $_SESSION['dependantic']?><br>
-Password :
-<?php echo $_SESSION['pass']?><br>
-Dependant Name :
-<?php echo $_SESSION['depname']?><br>
-Dependant Telephone :
-<?php echo $_SESSION['deptelephone']?><br>
-Dependant Address :
-<?php echo $_SESSION['depaddress']?><br>
-Dependant Email :
-<?php echo $_SESSION['depemail']?><br>
-Dependant Relationship :
-<?php echo $_SESSION['deprelationship']?><br>
-<button style:"decoration=none;"><a class="one" href="update_user.php?user_id=<?php echo $row['user_id'];?>">Edit</a></button>
+<form method="POST" data-aos="fade-right" style="margin-left:60px;   ">
+
+
+<div class="col-lg-11">
+<div class="card shadow-sm">
+<div class="card-header bg-transparent border-0">
+<h3 class="mb-0"><i class="far fa-clone pr-1"></i>USER</h3>
+</div>
+<div class="card-body pt-0">
+<table class="table table-bordered">
+<tr>
+<th width="30%">Address</th>
+<td width="2%">:</td>
+<td><?php echo $_SESSION['address']?><br></td>
+</tr>
+<tr>
+<th width="30%">Telephone</th>
+<td width="2%">:</td>
+<td><?php echo $_SESSION['telephone']?><br></td>
+</tr>
+<tr>
+<th width="30%">Email</th>
+<td width="2%">:</td>
+<td><?php echo $_SESSION['email']?><br></td>
+</tr>
+<tr>
+<th width="30%">Password</th>
+<td width="2%">:</td>
+<td><?php echo $_SESSION['pass']?><br></td>
+</tr>
+</table>
+</div>
+</div>
+
+
+<div class="col-lg-13">
+<div class="card shadow-sm">
+<div class="card-header bg-transparent border-0">
+<h3 class="mb-0"><i class="far fa-clone pr-1"></i>Dependant</h3>
+</div>
+<div class="card-body pt-0">
+<table class="table table-bordered">
+<tr>
+<th width="30%">Name</th>
+<td width="2%">:</td>
+<td><?php echo $_SESSION['depname']?><br></td>
+</tr>
+<tr>
+<th width="30%">IC</th>
+<td width="2%">:</td>
+<td><?php echo $_SESSION['dependantic']?><br></td>
+</tr>
+<tr>
+<th width="30%">Telephone</th>
+<td width="2%">:</td>
+<td><?php echo $_SESSION['deptelephone']?><br></td>
+</tr>
+<tr>
+<th width="30%">Address</th>
+<td width="2%">:</td>
+<td><?php echo $_SESSION['depaddress']?><br></td>
+</tr>
+<tr>
+<th width="30%">Email</th>
+<td width="2%">:</td>
+<td><?php echo $_SESSION['depemail']?><br></td>
+</tr>
+<tr>
+<th width="30%">Relationship</th>
+<td width="2%">:</td>
+<td><?php echo $_SESSION['deprelationship']?><br></td>
+</tr>
+</table>
+</div>
+</div>
+            
+<div class="wow">
+<button class="edit" style:"decoration=none; "><a class="one" href="update_user.php?user_id=<?php echo $row['user_id'];?>">Edit</a></button>
+            </div> 
 </form>
 <?php 
     if(isset($_POST['allsave'])){
@@ -158,9 +272,9 @@ Dependant Relationship :
 ?>
 
       
-      </div>  
+     
     
-    <footer class="border-top" style="position:relative;">
+    <footer  >
       <p class="text-center text-muted pt-4">Copyright © 2022 Malinja Room Reservation System.</p>
     </footer>
 

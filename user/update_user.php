@@ -12,11 +12,39 @@
   <link rel="stylesheet" href="vendors/mdi/css/materialdesignicons.min.css">
   <link rel="stylesheet" href="vendors/aos/css/aos.css">
   <link rel="stylesheet" href="css/style.min.css">
+  <!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,900&display=swap" rel="stylesheet">
+<!-- Bootstrap CSS -->
+<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css'>
+<!-- Font Awesome CSS -->
+<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css'>
 
 <style>
+body{
+    background-image: url(images/bg3.png);
+    background-size: cover;
+}
+
+
 .wrapper{
   width:100%;
   box-shadow:0 0 5px rgba(0,0,0..10);
+}
+
+table tr td{
+  font-size: 17px;
+    padding: 2px 10px;
+    color: #00000;
+   
+
+}
+
+.footer {
+   position:absolute;
+   bottom:0;
+   width:100%;
+   height:60px;   /* Height of the footer */
+   background:#6cf;
 }
 
 </style>
@@ -53,7 +81,7 @@
             <a class="nav-link" href="#feedback-section">Profile</a>
           </li>
           <li class="nav-item btn-contact-us pl-4 pl-lg-0">
-            <button class="btn btn-info" data-toggle="modal" data-target="#exampleModal" ><a href="../index.php"><div style="color:white">Logout</div></a></button>
+            <button class="btn btn-info" data-toggle="modal" data-target="#exampleModal" ><a href="../index.php"><div style="color:black">Logout</div></a></button>
           </li>
         </ul>
       </div>
@@ -105,54 +133,62 @@
 ?>
 <div class="container">
     <div class="col-12 col-lg-7 grid-margin grid-margin-lg-0" data-aos="fade-right" style="margin-left:360px;">
-      <h1 class="font-weight-semibold">UPDATE USER PROFILE</h1>
+      <h1 class="font-weight-semibold">UPDATE PROFILE</h1>
       </div>
 
-<form method="POST" style="margin-left:360px;">
-<table width="80%" border="0" style="margin-left-120px;" >
+<form method="POST" style="margin-left:400px;">
+
+<table class ="table table-bordered" width="60%" border="0" style="margin-left:-200px;  height:420px; background-color:#faf8f8; " >
 <tr>
-<td width="30%">Address </td>
-<td width="50%"><input type='text' id='address' name='address' value=<?php echo $_SESSION['address']?> size=40></td>
+<td colspan="2" style="text-align:left;"><h5><b>USER</b></h5></td>
 </tr>
 <tr>
-<td width="30%">Telephone</td>
-<td width="50%"><input type='text'  id='telephone' name='telephone' value=<?php echo $_SESSION['telephone']?>></td>
-<tr>
-<td width="30%">Email</td>
-<td width="50%"><input type='text'  id='email' name='email' value=<?php echo $_SESSION['email']?> size=40></td>
+<th width="20%">Address </th>
+<td width="40%"><input type='text' id='address' name='address' value="<?php echo $_SESSION['address']?>" size=60></td>
 </tr>
 <tr>
-<td width="30%">Depandant IC</td>
-<td width="50%"><input type='text'  id='dependantic' name='dependantic' value=<?php echo $_SESSION['dependantic']?> size=40></td>
+<th width="20%">Telephone</th>
+<td width="40%"><input type='text'  id='telephone' name='telephone' value="<?php echo $_SESSION['telephone']?>"size=30></td>
+<tr>
+<th width="20%">Email</th>
+<td width="40%"><input type='text'  id='email' name='email' value="<?php echo $_SESSION['email']?>" size=30></td>
 </tr>
 <tr>
-<td width="30%">Password</td>
-<td width="50%"><input type='text'  id='pass' name='pass' value=<?php echo $_SESSION['pass']?> size=40></td>
+<th width="20%">Password</th>
+<td width="40%"><input type='text'  id='pass' name='pass' value="<?php echo $_SESSION['pass']?>" size=30></td>
 </tr>
 <tr>
-<td width="30%">Dependant Name</td>
-<td width="50%"><input type='text' id='depname' name='depname' value=<?php echo $_SESSION['depname']?> size=40></td>
+<td colspan="2" style="text-align:left;"><h5><b>DEPENDANT</b></h5></td>
 </tr>
 <tr>
-<td width="30%">Dependant Telephone</td>
-<td width="50%"><input type='text' ' id='deptele' name='deptele' value=<?php echo $_SESSION['deptelephone']?> size=40></td>
+<th width="20%">Name</th>
+<td width="40%"><input type='text' id='depname' name='depname' value="<?php echo $_SESSION['depname']?>" size=40></td>
 </tr>
 <tr>
-<td width="30%">Dependant Address</td>
-<td width="50%"><input type='text' id='depadd' name='depadd' value=<?php echo $_SESSION['depaddress']?> size=40></td>
+<th width="20%">IC</th>
+<td width="40%"><input type='text'  id='dependantic' name='dependantic' value="<?php echo $_SESSION['dependantic']?>" size=30></td>
 </tr>
 <tr>
-<td width="30%">Dependant Email</td>
-<td width="50%"><input type='text'  id='depemail' name='depemail' value=<?php echo $_SESSION['depemail']?> size=40></td>
+<th width="20%">Telephone</th>
+<td width="40%"><input type='text' ' id='deptele' name='deptele' value="<?php echo $_SESSION['deptelephone']?> "size=30></td>
 </tr>
 <tr>
-<td width="30%">Dependant Relationship</td>
-<td width="50%"><input type='text'  id='deprel' name='deprel' value=<?php echo $_SESSION['deprelationship']?> size=40></td>
+<th width="20%">Address</th>
+<td width="40%"><input type='text' id='depadd' name='depadd' value="<?php echo $_SESSION['depaddress']?>"" size=60></td>
 </tr>
 <tr>
-<td ><input type='submit' id='allsave' name='allsave'></td>
+<th width="20%">Email</th>
+<td width="40%"><input type='text'  id='depemail' name='depemail' value="<?php echo $_SESSION['depemail']?> "size=30></td>
+</tr>
+<tr>
+<th width="20%">Relationship</th>
+<td width="40%"><input type='text'  id='deprel' name='deprel' value="<?php echo $_SESSION['deprelationship']?>" size=30></td>
+</tr>
+<tr>
+<td colspan="2" style="text-align:left; " ><input type='submit' value='Save' id='allsave' name='allsave' style="padding:0.6em 2em; border-radius:8px; color:#00000; background-color:#90ee90; border:0; cursor:pointer; "></td>
 </tr>
 </table>
+
 </form>
 
 <?php 
@@ -180,7 +216,7 @@
         //redirect("user_view_detail.php",$userid);
     }
 ?>
- <footer class="border-top">
+ <footer >
       <p class="text-center text-muted pt-4">Copyright © 2022 Malinja Room Reservation System.</p>
     </footer>
 
@@ -191,3 +227,4 @@
 <script src="js/landingpage.js"></script>
 </body>
 </html>
+

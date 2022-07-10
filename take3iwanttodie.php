@@ -12,7 +12,12 @@
   <link rel="stylesheet" href="css/style.min.css">
   <link rel="stylesheet" href="css/bookBox.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
- 
+  <!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,900&display=swap" rel="stylesheet">
+<!-- Bootstrap CSS -->
+<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css'>
+<!-- Font Awesome CSS -->
+<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css'>
 
 <style>
 
@@ -23,7 +28,7 @@ body{
 
 
 .accept{
-  border-radius: 8px;
+    border-radius: 8px;
   color:#000000;
   background-color:#90EE90;
   width: 100px;
@@ -51,6 +56,7 @@ table.oya {
 
 
 </style>
+
 </head>
 <body id="body" data-spy="scroll" data-target=".navbar" data-offset="100">
   <header id="header-section">
@@ -75,16 +81,16 @@ table.oya {
             </button>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="index.php">Requests <span class="sr-only">(current)</span></a>
+            <a class="nav-link" href="take3iwanttodie.php">Requests <span class="sr-only">(current)</span></a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="users.php">Users</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="take3iwanttodie.php">Rooms</a>  
+            <a class="nav-link" href="admin-view-history.php">History</a>  
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#feedback-section">Report</a>
+            <a class="nav-link" href="tablewtv.php">Report</a>
           </li>
           <li class="nav-item btn-contact-us pl-4 pl-lg-0">
             <button class="btn btn-info" data-toggle="modal" data-target="#exampleModal" ><a href="../index.php"><div style="color:white">Logout</div></a></button>
@@ -93,13 +99,16 @@ table.oya {
       </div>
     </div> 
     </nav>   
-  </header>
-  
+  </header><br>
+
   <div class="container">
     <div class="col-12 col-lg-7 grid-margin grid-margin-lg-0" data-aos="fade-right" style="margin-left:380px;">
       <h1 class="font-weight-semibold">ROOM REQUEST</h1>
       </div><br><br>
-      
+
+    
+
+<div class="tabreq">
 <?php
 include ("../php/session.php");
 include('../php/dbconn.php');
@@ -131,7 +140,7 @@ include('../php/dbconn.php');
         $result=mysqli_query($dbconn,$q) or die ("Error: " . mysqli_error($dbconn));
         $numrow = mysqli_num_rows($result);
         echo "<form method='POST'>";
-        echo "<table border=1>";
+        echo "<table border=1 >";
         for($a=0;$a<$numrow;$a++):
             $row = mysqli_fetch_array($result);
             if($row['status']==='0'):?>
@@ -182,7 +191,7 @@ include('../php/dbconn.php');
             $_SESSION['username']=$uid;
             $query4="DELETE FROM reserve WHERE bed_id='$bid' AND status=0";
             $result4=mysqli_query($dbconn,$query4);
-            header('Location:index.php');
+            header('Location:aiemantakmandiew.php');
         }
         
         if(isset($_POST['reject'])){
@@ -193,11 +202,12 @@ include('../php/dbconn.php');
             echo $query;
             session_unset();
             $_SESSION['username']=$uid;
-            header('Location:index.php');
+            header('Location:aiemantakmandiew.php');
         }
         ?>
+</div>
 
-<footer style="bottom:0;">
+ <footer style="bottom:0;">
         <p class="text-center text-muted pt-4">Copyright © 2022 Malinja Room Reservation System.</p>
       </footer>
 
