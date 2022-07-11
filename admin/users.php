@@ -49,10 +49,7 @@ if (!isset($_SESSION['username'])) {
             <a class="nav-link" href="users.php">Users</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#digital-marketing-section">Rooms</a>  
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#feedback-section">Report</a>
+            <a class="nav-link" href="report.php">Report</a>
           </li>
           <li class="nav-item btn-contact-us pl-4 pl-lg-0">
           <button class="btn btn-info" data-toggle="modal" data-target="#exampleModal" ><a href="../index.php"><div style="color:white">Logout</div></a></button>

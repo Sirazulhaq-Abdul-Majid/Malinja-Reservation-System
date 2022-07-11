@@ -85,9 +85,6 @@ th{
             <a class="nav-link" href="users.php">Users</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="admin-view-history.php">History</a>  
-          </li>
-          <li class="nav-item">
             <a class="nav-link" href="report.php">Report</a>
           </li>
           <li class="nav-item btn-contact-us pl-4 pl-lg-0">
