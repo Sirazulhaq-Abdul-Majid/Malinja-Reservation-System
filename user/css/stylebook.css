@@ -40,12 +40,31 @@
     margin-left: auto;   
 }
 
-.building-border{
+.room-container{
+    display: flex;
+    flex-direction: row;
     width: 100%;
-    height: 100%;
+    height: 500px;
+    padding-top: 30px;
+    padding-right: 60px;
+    padding-left: 15px;
+    padding-bottom: 5px;
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: auto;
+    margin-bottom: auto;
+    border: 5px solid black;
+    align-items: center;
+    justify-content: space-around;  
+}
+
+.building-border{
+    width: 90%;
+    height: 90%;
     display: grid;
     grid-template-columns: auto auto auto auto auto auto auto auto auto;
     grid-template-rows: auto auto auto auto auto auto auto;
+    border: solid gray 3px;
 }
 
 .room1{
@@ -131,6 +150,43 @@
 .room25{
     grid-column-start: 1;
     grid-row-start: 6;
+}
+
+.bed-container{
+    display: flex;
+    flex-direction: row;
+    width: 1000px;
+    height: 500px;
+    padding-top: 30px;
+    padding-right: 60px;
+    padding-left: 15px;
+    padding-bottom: 5px;
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: auto;
+    margin-bottom: auto;
+    border: 5px solid black;
+    align-items: center;
+    justify-content: space-around;  
+}
+
+.bed-border{
+    border: solid gray 3px;
+    display: grid;
+    width: 500px;
+    height: 300px;
+    grid-template-columns: auto auto auto;
+    grid-template-rows: auto auto;
+}
+
+.bed2{
+    grid-column-start: 1;
+    grid-row-start: 2;
+}
+
+.bed4{
+    grid-column-start: 2;
+    grid-row-start: 2;
 }
 
 .error{

@@ -75,10 +75,10 @@ table tr td{
             <a class="nav-link" href="index.html">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#digital-marketing-section">Request</a>  
+            <a class="nav-link" href="index2.php">Request</a>  
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#feedback-section">Profile</a>
+            <a class="nav-link" href="user_view_detail.php">Profile</a>
           </li>
           <li class="nav-item btn-contact-us pl-4 pl-lg-0">
             <button class="btn btn-info" data-toggle="modal" data-target="#exampleModal" ><a href="../index.php"><div style="color:black">Logout</div></a></button>

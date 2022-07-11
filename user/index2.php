@@ -57,7 +57,7 @@
   </header>
   
   <div class="main">
-    <div class="book-container">
+
     <?php
 include ("../php/session.php");
 include('../php/dbconn.php');
@@ -185,9 +185,8 @@ if(isset($_SESSION['warn'])):?>
   </div>
 
 <?php endif ?>
-
+<div class="book-container">
 <div class="block-container">
-  Block
 <form method='POST'>
 <?php $blockavail=$_SESSION['blockavail'];
 for($a=1;$a<3;$a++):?>
@@ -197,7 +196,7 @@ for($a=1;$a<3;$a++):?>
     else{
         $val="B";
     }?>
-    <input type="submit" value=<?php echo $val ?> style='background-color:<?php echo $blockavail[$a]?>;' id='block' name='block'>
+    <button type="submit" value=<?php echo $val ?> style='background-color:<?php echo $blockavail[$a]?>;' id='block' name='block'>Block <?php echo $val?></button>
 <?php endfor ?>
 </form>
 </div>
@@ -239,30 +238,30 @@ for($a=1;$a<3;$a++):?>
 
 <?php if(isset($_SESSION['block'])):?>
   <div class="floor-container">
-    Floor
   <form method='POST'>
     <?php if($_SESSION['block']=="A" && array_search("green",$_SESSION['afloor'])):
         $afloor=$_SESSION['afloor'];
         for ($a=1;$a<5;$a++):
             if ($a==1):?>
-                <input type="submit" value="GF" style='background-color:<?php echo $afloor[$a]?>;' id='floora' name='floora'>
+                <button type="submit" value="GF" style='background-color:<?php echo $afloor[$a]?>;' id='floora' name='floora'>Ground Floor</button>
                 <?php continue; ?>
             <?php endif ?>
-            <input type="submit" value=<?php echo $a ?> style='background-color:<?php echo $afloor[$a]?>;' id='floora' name='floora'>
+            <button type="submit" value=<?php echo $a ?> style='background-color:<?php echo $afloor[$a]?>;' id='floora' name='floora'>Floor <?php echo $a-1?></button>
         <?php endfor ?>
     <?php endif ?>
     <?php if($_SESSION['block']=="B" && array_search("green",$_SESSION['bfloor'])):
         $bfloor=$_SESSION['bfloor'];
         for ($a=1;$a<5;$a++):
             if ($a==1):?>
-                <input type="submit" value="GF" style='background-color:<?php echo $bfloor[$a]?>;' id='floorb' name='floorb'>
+                <button type="submit" value="GF" style='background-color:<?php echo $bfloor[$a]?>;' id='floorb' name='floorb'>Ground Floor</button>
                 <?php continue; ?>
             <?php endif ?>
-            <input type="submit" value=<?php echo $a ?> style='background-color:<?php echo $bfloor[$a]?>;' id='floorb' name='floorb'>
+            <button type="submit" value=<?php echo $a ?> style='background-color:<?php echo $bfloor[$a]?>;' id='floorb' name='floorb'>Floor <?php echo $a-1?></button>
         <?php endfor ?>
     <?php endif ?>
     </form>
   </div>
+</div>
     
 <?php endif ?>
 
@@ -351,9 +350,14 @@ else if(isset($_POST['floorb'])){
     if (isset($room)):
     for($a=1;$a<26;$a++):?>
         <div class="room<?php echo $a?>">
-        <input type="submit" value=<?php echo $a ?> style='background-color:<?php echo $room[$a]?>;' id='bed' name='bed'>
-        </div>
-        
+        <?php if ($a<10):?>
+        <button type="submit" value=<?php echo $a ?> style='background-color:<?php echo $room[$a]?>;' id='bed' name='bed'><?php echo $block ?><?php echo $floor-1?>0<?php echo $a?></button>
+        <?php else:?>
+            <button type="submit" value=<?php echo $a ?> style='background-color:<?php echo $room[$a]?>;' id='bed' name='bed'><?php echo $block ?><?php echo $floor-1?><?php echo $a?></button>
+
+
+        <?php endif ?>
+        </div>        
     <?php endfor ?>
     <?php endif ?>
     </form>
@@ -387,14 +391,18 @@ if(isset($_SESSION['roomid'])):
     $numrow1 = mysqli_num_rows($result1);
     $_SESSION['numrow']=$numrow1;
     ?>
-    <form method='POST'>  
-        bed
+    <div class="bed-container">
+    <form method='POST'>
+        <div class="bed-border">
+
+        
         <?php for($a=0;$a<$_SESSION['numrow'];$a++):
             $row1 = mysqli_fetch_array($result1);
             if($row2['total_resident']<6):
                 if ($row1['availability']==1):?>
-                <div class="bed">
+                <div class="bed<?php echo $a+1?>">
                 <input type="submit" value=<?php echo $a+1 ?> style='background-color:green;' id='bed' name='final'>
+                <button type="submit" value=<?php echo $a+1 ?> style='background-color:green;' id='bed' name='final'>
                 </div>
                     
                 <?php endif ?>
@@ -402,8 +410,11 @@ if(isset($_SESSION['roomid'])):
                     <input type="submit" value=<?php echo $a+1 ?> style='background-color:red;'>
                 <?php endif ?>
             <?php endif ?>
-        <?php endfor ?>  
+        <?php endfor ?>
+        </div>   
     </form>
+    </div>
+    
 <?php endif ?>
 
 <?php if(isset($_POST['final'])){
@@ -449,7 +460,6 @@ if (isset($_SESSION['bed'])):
 <?php endif ?>
 
 
-  </div>
       <footer class="border-top">
         <p class="text-center text-muted pt-4">Copyright © 2022 Malinja Room Reservation System.</p>
       </footer>
