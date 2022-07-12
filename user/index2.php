@@ -423,13 +423,28 @@ else if(isset($_POST['floorb'])){
     <form method='POST'>
     <div class='w3-animate-opacity'>
     <div class="room-container" id='room-container'>
+        <?php 
+        echo 'Block :';
+        echo $_SESSION['block'];
+        echo "<br>";
+        echo "Floor :";
+        if ($_SESSION['floor']==1){
+            echo 'GF';
+        }
+        else{
+            echo $_SESSION['floor'];    
+        }
+    ?>
       <div class="building-border">
       <?php
     $room=$_SESSION['room'];
 
   
     if (isset($room)):
-    for($a=1;$a<26;$a++):?>
+        
+    for($a=1;$a<26;$a++):
+        
+    ?>
         <div class="room<?php echo $a?>">
         <?php if ($a<10):?>
         <button type="submit" value=<?php echo $a ?> style='background-color:<?php echo $room[$a]?>; width:100%; height:100%' id='bed' name='bed'><?php echo $block ?><?php echo $floor-1?>0<?php echo $a?></button>
@@ -477,6 +492,20 @@ if(isset($_SESSION['roomid'])):
     
     <div class='w3-animate-opacity'>
     <div class="bed-container" id='bed-container'>
+    <?php 
+        echo 'Block :';
+        echo $_SESSION['block'];
+        echo "<br>";
+        echo "Floor :";
+        if ($_SESSION['floor']==1){
+            echo 'GF';
+        }
+        else{
+            echo $_SESSION['floor'];    
+        }
+        echo "<br>Room No :";
+        echo $_SESSION['roomid'];
+    ?>
     <form method='POST'>
         <div class="bed-border">
 
