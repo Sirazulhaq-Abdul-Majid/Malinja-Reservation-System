@@ -15,6 +15,13 @@
   <link rel="stylesheet" href="vendors/aos/css/aos.css">
   <link rel="stylesheet" href="css/style.min.css">
   <link rel="stylesheet" href="css/stylebook.css">
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+   <!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,900&display=swap" rel="stylesheet">
+<!-- Bootstrap CSS -->
+<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css'>
+<!-- Font Awesome CSS -->
+<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css'>
 
 </head>
 <body id="body" data-spy="scroll" data-target=".navbar" data-offset="100">
@@ -57,7 +64,7 @@
     </nav>   
   </header>
   
-  <div class="main">
+  <div class="main" id='main'>
   <?php 
 include ("../php/session.php");
 include('../php/dbconn.php');
@@ -91,11 +98,15 @@ $numrow=mysqli_num_rows($result);?>
         echo '</td>';
         echo '<td>';
         if($row['status']==1){
-          echo 'approved';
+          echo 'Approved';
         }
-        else if ($row['status']=-1){
-          echo 'rejected';
+        else if ($row['status']==-1){
+          echo 'Rejected';
         }
+        else{
+            echo 'Pending';
+        }
+        
         echo '</td>';
         echo '</tr>';
     }?>
@@ -230,7 +241,10 @@ if(isset($_SESSION['warn'])):?>
   </div>
 
 <?php endif ?>
+<div id='oya' style='height:100px;'>
+</div><div class="w3-animate-opacity" style="width:100%;">
 <div class="block-floor-container" id="block-floor-container">
+
 
     <div class="block-container">
 <form method='POST'>
@@ -242,7 +256,7 @@ for($a=1;$a<3;$a++):?>
     else{
         $val="B";
     }?>
-    <button type="submit" value=<?php echo $val ?> style='background-color:<?php echo $blockavail[$a]?>; width:150px; height: 350px;' id='block' name='block' onclick="smoothScroll(document.getElementById('block-floor-container'))">Block <?php echo $val?></button>
+    <button type="submit" value=<?php echo $val ?> style='background-color:<?php echo $blockavail[$a]?>; width:150px; height: 350px;' id='block' name='block' >Block <?php echo $val?></button>
 <?php endfor ?>
 </form>
 </div>
@@ -280,6 +294,7 @@ for($a=1;$a<3;$a++):?>
     if(isset($_SESSION['floor'])){
       unset($_SESSION['floor']);
     }
+    header("Location:index2.php#oya");
 }?>
 
 <?php if(isset($_SESSION['block'])):?>
@@ -319,6 +334,8 @@ for($a=1;$a<3;$a++):?>
     </form>
     </div>
 </div>
+            </div>
+
     
 <?php endif ?>
 
@@ -337,6 +354,10 @@ for($a=1;$a<3;$a++):?>
         echo '<script type ="text/JavaScript">';  
         echo 'alert("Not Available!")';  
         echo '</script>';  
+        header("Location:index2.php#oya");
+    }
+    else{
+        header("Location:index2.php#room-container");
     }
 }
 else if(isset($_POST['floorb'])){
@@ -356,6 +377,8 @@ else if(isset($_POST['floorb'])){
         echo 'alert("Not Available!")';  
         echo '</script>';  
     }
+    
+    header("Location:index2.php#room-container");
 }
 ?>
 <?php if(isset($_SESSION['floor'])):
@@ -398,7 +421,8 @@ else if(isset($_POST['floorb'])){
         ?>
     <?php endif ?>
     <form method='POST'>
-    <div class="room-container">
+    <div class='w3-animate-opacity'>
+    <div class="room-container" id='room-container'>
       <div class="building-border">
       <?php
     $room=$_SESSION['room'];
@@ -421,10 +445,12 @@ else if(isset($_POST['floorb'])){
 <?php endif ?>
       </div>
     </div>
+        </div>
     
 
 <?php 
 if(isset($_POST['bed'])){
+    header("Location:index2.php#bed-container");
     $_SESSION['roomid']=$_POST['bed'];
     $r=$_SESSION['room'];
     if ($r[$_SESSION['roomid']]=='red'){
@@ -448,7 +474,9 @@ if(isset($_SESSION['roomid'])):
     $numrow1 = mysqli_num_rows($result1);
     $_SESSION['numrow']=$numrow1;
     ?>
-    <div class="bed-container">
+    
+    <div class='w3-animate-opacity'>
+    <div class="bed-container" id='bed-container'>
     <form method='POST'>
         <div class="bed-border">
 
@@ -470,6 +498,9 @@ if(isset($_SESSION['roomid'])):
         </div>   
     </form>
     </div>
+                </div>
+                <div style='height:70px'>
+    </div>
     
 <?php endif ?>
 
@@ -481,6 +512,10 @@ if(isset($_SESSION['roomid'])):
 
 <?php 
 if(isset($_SESSION['bed'])){
+        echo '<script type ="text/JavaScript">';  
+        echo 'var x = window.confirm("Do you want to book this room?")';
+        echo 'if (x==false){window.open("index2.php","_self")}';  
+        echo '</script>';  
 $uid=$_SESSION['user_id'];
 $querylimit="SELECT user_id FROM reserve WHERE user_id='$uid'";
 $resultlimit = mysqli_query($dbconn, $querylimit) or die ("Error: " . mysqli_error($dbconn));

@@ -1,0 +1,57 @@
+.center {
+    position: absolute;
+    margin: auto;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: 1000px;
+    height: 550px;
+    background-color: #b2b2b2;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.image{
+    position: absolute;
+    margin: auto;
+    top: 30px;
+    right: 520px;
+    bottom: 0px;
+    left: 0;
+    width:450px;
+}
+
+.right{
+    float:right;
+    height:100%;
+    width:50%;
+    border-left: 1px solid black;
+}
+
+.corner{
+    position: absolute;
+    margin: auto;
+    top:-490px;
+    right:1050px;
+    bottom: 0px;
+    left: 0;
+    width:50px;
+}
+
+body{
+    background-image: url("../resources/loginbg.jpg");
+    background-size: cover;
+}
+
+.botleft{
+    position: absolute;
+    left:930px;
+    bottom:10px;
+    font-size:medium;
+}
+
+.botright{
+    position: absolute;
+    font-size:medium;
+}

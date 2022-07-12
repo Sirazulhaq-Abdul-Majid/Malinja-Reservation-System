@@ -1,0 +1,23 @@
+.book_container{
+    width: 100%;
+    height: 500px;
+    position: relative;
+    border: 5px solid black;
+}
+
+.blk_btn{
+    position: relative;
+    float: left;
+}
+
+.blk_A{
+    width: 150px;
+    height: 50px;
+    border: none;
+}
+
+.blk_B{
+    width: 150px;
+    height: 50px;
+    border: none;
+}

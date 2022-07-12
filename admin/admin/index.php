@@ -128,7 +128,7 @@ if (!isset($_SESSION['username'])) {
 </tr>
 </table>
 <?php
-
+ob_start();
 include('../php/dbconn.php');
 
         include ("../php/session.php");
@@ -191,9 +191,7 @@ include('../php/dbconn.php');
             $_SESSION['username']=$uid;
             $query4="DELETE FROM reserve WHERE bed_id='$bid' AND status=0";
             $result4=mysqli_query($dbconn,$query4);
-            echo '<script type ="text/JavaScript">';  
-            echo 'window.open("index.php","_self")';  
-            echo '</script>';
+            header('Location:aiemantakmandiew.php');
         }
         
         if(isset($_POST['reject'])){
@@ -201,11 +199,10 @@ include('../php/dbconn.php');
             $rid=$_POST['reject'];
             $query="UPDATE reserve SET status='-1' WHERE reserve_id='$rid'";
             $resulto=mysqli_query($dbconn,$query);
+            echo $query;
             session_unset();
             $_SESSION['username']=$uid;
-            echo '<script type ="text/JavaScript">';  
-            echo 'window.open("index.php","_self")';  
-            echo '</script>';  
+            header('Location:aiemantakmandiew.php');
         }
         ?>
 </div>

@@ -68,7 +68,9 @@ include('../php/dbconn.php');
             $result5=mysqli_query($dbconn,$query5);
             session_unset();
             $_SESSION['username']=$uid;
-            header('Location:aiemantakmandiew.php');
+            $query4="DELETE FROM reserve WHERE bed_id='$bid' AND status=0";
+            $result4=mysqli_query($dbconn,$query4);
+            header('Location:request.php');
         }
         
         if(isset($_POST['reject'])){
@@ -79,6 +81,18 @@ include('../php/dbconn.php');
             echo $query;
             session_unset();
             $_SESSION['username']=$uid;
-            header('Location:aiemantakmandiew.php');
+            header('Location:request.php');
         }
         ?>
+
+<footer style="bottom:0;">
+        <p class="text-center text-muted pt-4">Copyright © 2022 Malinja Room Reservation System.</p>
+      </footer>
+
+  <script src="vendors/jquery/jquery.min.js"></script>
+  <script src="vendors/bootstrap/bootstrap.min.js"></script>
+  <script src="vendors/owl-carousel/js/owl.carousel.min.js"></script>
+  <script src="vendors/aos/js/aos.js"></script>
+  <script src="js/landingpage.js"></script>
+</body>
+</html>

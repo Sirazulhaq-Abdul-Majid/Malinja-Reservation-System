@@ -100,8 +100,8 @@ th{
   </header><br>
 
   <div class="container">
-    <div class="col-12 col-lg-7 grid-margin grid-margin-lg-0" data-aos="fade-right" style="margin-left:400px; width:100%;">
-      <h1 class="font-weight-semibold">AVAILABLITY</h1>
+    <div class="col-12 col-lg-7 grid-margin grid-margin-lg-0" data-aos="fade-right" style="margin-left:250px; width:100%;">
+      <h1 class="font-weight-semibold">AVAILABLITY AND HISTORY</h1>
       </div><br><br>
 
 <?php 
@@ -135,14 +135,11 @@ $numrow=mysqli_num_rows($result);?>
             echo "</td>";
             }?>
     </tr>
-    <tr style="padding: 5px;font-weight: bold;"><?php 
+    <tr style="padding: 5px;"><?php 
     for ($a=0;$a<25;$a++){
     echo '<td>';
-    $row=mysqli_fetch_array($result);
     echo '<div style="color:green">';
-    echo 6-$row['total_resident'];
-    echo "</div>";
-    echo '<div style="color:red">';
+    $row=mysqli_fetch_array($result);
     echo $row['total_resident'];
     echo "</div>";
     echo "</td>";
@@ -153,14 +150,11 @@ $numrow=mysqli_num_rows($result);?>
     echo $a;
     echo "</td>";
     }?></tr>
-    <tr style="padding: 5px;font-weight: bold;"><?php 
+    <tr style="padding: 5px;"><?php 
     for ($a=0;$a<25;$a++){
     echo '<td>';
-    $row=mysqli_fetch_array($result);
     echo '<div style="color:green">';
-    echo 6-$row['total_resident'];
-    echo "</div>";
-    echo '<div style="color:red">';
+    $row=mysqli_fetch_array($result);
     echo $row['total_resident'];
     echo "</div>";
     echo "</td>";
@@ -171,14 +165,11 @@ $numrow=mysqli_num_rows($result);?>
     echo $a;
     echo "</td>";
     }?></tr>
-    <tr style="padding: 5px;font-weight: bold;"><?php 
+    <tr style="padding: 5px;"><?php 
     for ($a=0;$a<25;$a++){
     echo '<td>';
-    $row=mysqli_fetch_array($result);
     echo '<div style="color:green">';
-    echo 6-$row['total_resident'];
-    echo "</div>";
-    echo '<div style="color:red">';
+    $row=mysqli_fetch_array($result);
     echo $row['total_resident'];
     echo "</div>";
     echo "</td>";
@@ -189,14 +180,11 @@ $numrow=mysqli_num_rows($result);?>
     echo $a;
     echo "</td>";
     }?></tr>
-    <tr style="padding: 5px;font-weight: bold;"><?php 
+    <tr style="padding: 5px;"><?php 
     for ($a=0;$a<25;$a++){
     echo '<td>';
-    $row=mysqli_fetch_array($result);
     echo '<div style="color:green">';
-    echo 6-$row['total_resident'];
-    echo "</div>";
-    echo '<div style="color:red">';
+    $row=mysqli_fetch_array($result);
     echo $row['total_resident'];
     echo "</div>";
     echo "</td>";
@@ -222,14 +210,11 @@ $numrow=mysqli_num_rows($result);?>
             echo "</td>";
             }?>
     </tr>
-    <tr style="font-weight: bold;"><?php 
+    <tr><?php 
     for ($a=0;$a<25;$a++){
     echo '<td>';
-    $row=mysqli_fetch_array($result);
     echo '<div style="color:green">';
-    echo 6-$row['total_resident'];
-    echo "</div>";
-    echo '<div style="color:red">';
+    $row=mysqli_fetch_array($result);
     echo $row['total_resident'];
     echo "</div>";
     echo "</td>";
@@ -240,16 +225,12 @@ $numrow=mysqli_num_rows($result);?>
     echo $a;
     echo "</td>";
     }?></tr>
-    <tr style="padding: 5px;font-weight: bold;"><?php 
+    <tr style="padding: 5px;"><?php 
     for ($a=0;$a<25;$a++){
     echo '<td>';
-    $row=mysqli_fetch_array($result);
     echo '<div style="color:green">';
-    echo 6-$row['total_resident'];
-    echo "</div>";
-    echo '<div style="color:red">';
+    $row=mysqli_fetch_array($result);
     echo $row['total_resident'];
-    echo "</div>";
     echo "</div>";
     echo "</td>";
     }
@@ -259,14 +240,11 @@ $numrow=mysqli_num_rows($result);?>
     echo $a;
     echo "</td>";
     }?></tr>
-    <tr style="padding: 5px;font-weight: bold;"><?php 
+    <tr style="padding: 5px;"><?php 
     for ($a=0;$a<25;$a++){
     echo '<td>';
-    $row=mysqli_fetch_array($result);
     echo '<div style="color:green">';
-    echo 6-$row['total_resident'];
-    echo "</div>";
-    echo '<div style="color:red">';
+    $row=mysqli_fetch_array($result);
     echo $row['total_resident'];
     echo "</div>";
     echo "</td>";
@@ -277,14 +255,11 @@ $numrow=mysqli_num_rows($result);?>
     echo $a;
     echo "</td>";
     }?></tr>
-    <tr style="padding: 5px;font-weight: bold;"><?php 
+    <tr style="padding: 5px; font-weight: bold;"><?php 
     for ($a=0;$a<25;$a++){
     echo '<td>';
-    $row=mysqli_fetch_array($result);
     echo '<div style="color:green">';
-    echo 6-$row['total_resident'];
-    echo "</div>";
-    echo '<div style="color:red">';
+    $row=mysqli_fetch_array($result);
     echo $row['total_resident'];
     echo "</div>";
     echo "</td>";
