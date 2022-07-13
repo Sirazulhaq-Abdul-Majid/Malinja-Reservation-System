@@ -5,13 +5,12 @@ session_start();
 if (!isset($_SESSION['username'])) {
   header('Location: ../');
 }
-?>
-<!DOCTYPE html>
+?><!DOCTYPE html>
 <html lang="en">
 <head>
+  <head>
     <script src="https://code.jquery.com/jquery-3.6.0.slim.min.js" integrity="sha256-u7e5khyithlIdTpu22PHhENmPcRdFiHRjhAuHcs05RI=" crossorigin="anonymous"></script>
     <script src="js/readonly.js"></script>
-    <script src="js/buton.js"></script>
 
   <title>i-Kolej</title>
   <meta charset="UTF-8">
@@ -22,9 +21,7 @@ if (!isset($_SESSION['username'])) {
   <link rel="stylesheet" href="vendors/mdi/css/materialdesignicons.min.css">
   <link rel="stylesheet" href="vendors/aos/css/aos.css">
   <link rel="stylesheet" href="css/style.min.css">
-  <link rel="stylesheet" href="css/stylebook.css">
-  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-   <!-- Google Fonts -->
+  <!-- Google Fonts -->
 <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,900&display=swap" rel="stylesheet">
 <!-- Bootstrap CSS -->
 <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css'>
@@ -32,18 +29,81 @@ if (!isset($_SESSION['username'])) {
 <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css'>
 
 <style>
-tr{
-    border-style: outset;
-    text-align: center;
+  body{
+    background-image: url(images/bg3.png);
+    background-size: cover;
 }
 
-td{
-    border-style: outset;
-    text-align: center;
-    background-color:#D6EEEE;
-
+.bg {
+  width: 100%;
+  height: 400px;
+  background: src("images/uitm.png") no-repeat center center/cover;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  justify-content: flex-end;
+  padding-bottom: 50px;
+  margin-bottom: 20px;
 }
+
+.showcase h2, .showcase p {
+  margin-bottom: 10px;
+}
+
+.showcase .btn {
+  margin-top: 20px;
+}
+
+/* Home cards */
+.home-cards {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 20px;
+  margin-bottom: 40px;
+}
+
+.home-cards img {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.home-cards h3 {
+  margin-bottom: 5px;
+}
+
+.home-cards a {
+  display: inline-block;
+  padding-top: 10px;
+  color: #0067b8;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+.home-cards a:hover i {
+  margin-left: 10px;
+}
+
+/* Xbox */
+.xbox {
+  width: 100%;
+  height: 350px;
+  background: url("https://thumbs.dreamstime.com/b/university-building-vector-illustration-cartoon-d-outside-front-view-high-elementary-school-college-academy-campus-186210510.jpg") no-repeat center center/cover;
+  margin-bottom: 20px;
+}
+
+.xbox .content {
+  width: 40%;
+  padding: 50px 0 0 30px;
+}
+
+.xbox p, .carbon p {
+  margin: 10px 0 20px;
+}
+
+
 </style>
+
 </head>
 <body id="body" data-spy="scroll" data-target=".navbar" data-offset="100">
   <header id="header-section">
@@ -67,7 +127,7 @@ td{
             <button class="navbar-toggler close-button" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
               <span class="mdi mdi-close navbar-toggler-icon pl-5"></span>
             </button>
-          </li>
+            </li>
           <li class="nav-item">
             <a class="nav-link" href="index.php">Home</a>
           </li>
@@ -89,58 +149,88 @@ td{
     </nav>   
   </header>
 
+
   <div class="container">
-    <div class="col-12 col-lg-7 grid-margin grid-margin-lg-0" data-aos="fade-right" style="margin-left:380px;">
-      <h1 class="font-weight-semibold">Reservation History</h1>
-      </div><br><br>
+    <div class="col-12 col-lg-7 grid-margin grid-margin-lg-0" data-aos="fade-right" style="margin-left:360px;">
+      <h1 class="font-weight-semibold">WELCOME TO i-KOLEJ</h1><br>
+      </div>
+      <header >
+      <img src="images/uitm.png" class="bg">
+      
+      
+      
+    </header>
+    
+    <center><h2>EVENTS</h2></center>
+
+    <!-- Home cards 1 -->
+    <section class="home-cards">
+      <div>
+        <img src="images/data.jpeg" alt="">
+        
+      </div>
+      <div>
+        <img src="images/funtasy.jpeg" alt="" />
+        
+        
+      </div>
+      <div>
+        <img src="images/keusahawanan.jpeg" alt="" />
+      
+        
+      </div>
+      <div>
+        <img src="images/aidil.png" alt="" />
+        
+        
+      </div>
+    </section>
+
+    <!-- pic large 2 -->
+    <section class="xbox">
+      <div class="content">
+        <h2>Claim Limited Lanyard</h2>
+        <p>Register college room through i-kolej system now
+          and will get to choose one out of 4 limited lanyard.</p>
+          
+      </div>
+    </section>
+
+    <!-- Home cards 2 -->
+			<section class="home-cards">
+				<div>
+					<img src="images/layard1.jpeg" alt="" />
+					<h3>Royal Batik</h3>
+					
+					
+				</div>
+				<div>
+					<img src="images/layard2.jpeg" alt="" />
+					<h3>Exquisite Batik</h3>
+					
+					
+				</div>
+				<div>
+					<img src="images/layard3.jpeg" alt="" />
+					<h3>Raven Batik</h3>
+					
+					
+				</div>
+				<div>
+					<img src="images/layard4.jpeg" alt="" />
+					<h3>Majestic</h3>
+				
+					
+				</div>
+      </section>
+      
 
 
-<?php
-include('../php/dbconn.php');
-include ("../php/session.php");
-$uid=$_SESSION['user_id'];
-$q="SELECT * FROM reserve WHERE user_id='$uid' ORDER BY timestamp";
-$result=mysqli_query($dbconn,$q);
-$numrow=mysqli_num_rows($result);?>
-<table class="table table-bordered" style="text-align:center;" >
 
-<tr style="background-color:#ADD8E6; border-style: outset;"><th style="border-style: outset;"><b>Reserve id<b></th><th style="border-style: outset;"><b>Timestamp</b></th><th style="border-style: outset;"><b>Bed</b></th><th style="border-style: outset;"><b>Status</b></th></tr>
-<?php for ($a=0;$a<$numrow;$a++){
-    $row=mysqli_fetch_array($result);
-    echo '<tr >';
-    echo '<td style="border-style: outset;">';
-    echo $row['reserve_id'];
-    echo '</td>';
-    echo '<td style="border-style: outset;">';
-    echo $row['timestamp'];
-    echo '</td>';
-    echo '<td style="border-style: outset;">';
-    echo $row['bed_id'];
-    echo '</td>';
-    echo '<td style="border-style: outset;">';
-        if($row['status']==1){
-          echo 'Approved';
-        }
-        else if ($row['status']==-1){
-          echo 'Rejected';
-        }
-        else{
-          echo 'Pending';
-        }
-        echo '</td>';
-        echo '</tr>';
-    }?>
-
-</table>
-
-<footer class="border-top">
-        <p class="text-center text-muted pt-4">Copyright © 2022 Malinja Room Reservation System.</p>
-      </footer>
-
-  <script src="vendors/jquery/jquery.min.js"></script>
-  <script src="vendors/bootstrap/bootstrap.min.js"></script>
-  <script src="vendors/owl-carousel/js/owl.carousel.min.js"></script>
-  <script src="vendors/aos/js/aos.js"></script>
-  <script src="js/landingpage.js"></script>
+<script src="vendors/jquery/jquery.min.js"></script>
+<script src="vendors/bootstrap/bootstrap.min.js"></script>
+<script src="vendors/owl-carousel/js/owl.carousel.min.js"></script>
+<script src="vendors/aos/js/aos.js"></script>
+<script src="js/landingpage.js"></script>
 </body>
 </html>

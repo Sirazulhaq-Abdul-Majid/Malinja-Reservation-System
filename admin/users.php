@@ -35,11 +35,12 @@ if (!isset($_SESSION['username'])) {
 </head>
 <body id="body" data-spy="scroll" data-target=".navbar" data-offset="100">
   <header id="header-section">
-    <nav class="navbar navbar-expand-lg pl-3 pl-sm-0" id="navbar">
+    <nav class="navbar navbar-expand-lg pl-3 pl-sm-0" id="navbar" style="font-family: Poppins,sans-serif;">
     <div class="container">
       <div class="navbar-brand-wrapper d-flex w-100">
       
-        <img src="images/logohoriz.png" alt="" style="width:150px;">
+      <a href="index.php">
+        <img src="images/logohoriz.png" alt="" style="width:150px;"></a>
       
         <button class="navbar-toggler ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="mdi mdi-menu navbar-toggler-icon"></span>
@@ -68,7 +69,7 @@ if (!isset($_SESSION['username'])) {
             <a class="nav-link" href="report.php">Report</a>
           </li>
           <li class="nav-item btn-contact-us pl-4 pl-lg-0">
-            <button class="btn btn-info" data-toggle="modal" data-target="#exampleModal" onclick='window.open("../index.php")'>Logout</button>
+            <button class="btn btn-info" data-toggle="modal" data-target="#exampleModal" onclick='window.open("../index.php","_self")'>Logout</button>
           </li>
         </ul>
       </div>

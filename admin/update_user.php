@@ -19,6 +19,35 @@
 <!-- Font Awesome CSS -->
 <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css'>
 
+<style>
+  body{
+    background-image: url(images/bg3.png);
+    background-size: cover;
+}
+
+.save{
+    border-radius: 8px;
+  color:#000000;
+  background-color:#90EE90;
+  width: 100px;
+  
+}
+
+.cancel{
+border-radius: 8px;  
+  color:#00000;
+  background-color:#FF1C1C;
+  width: 100px; 
+}
+
+.delete{
+border-radius: 8px;  
+  color:#00000;
+  background-color:#ff0000;
+  width: 100px;
+  
+}
+</style>
 </head>
 <body id="body" data-spy="scroll" data-target=".navbar" data-offset="100">
   <header id="header-section">
@@ -89,54 +118,46 @@ $user_id = $_GET['user_id'];
 <fieldset>
 
 <form name="edit_user" method="POST" action="db_update_user.php?userid=<?php echo $user_id;?>">
-    <table width="80%" border="0" align="center">
+<table class="table table-bordered" border="0" style="margin-left:320px;  width:500px; height:420px; background-color:#faf8f8; " >
       <tr>
-        <td width="16%">Name</td>  
+        <td width="16%"><b>Name</b></td>  
         <td width="84%"><input type="text" name="name" size="50" value="<?php echo ucwords (strtolower($row['name'])); ?>" /></td>  
       </tr>  
       <tr> 
-        <td width="16%">Gender</td>
+        <td width="16%"><b>Gender</b></td>
         <td>
         <input name="gender" type="radio" value="1" <?php if($row['gender']==1) { echo 'checked'; } ?> />Men
 		<input name="gender" type="radio" value="2" <?php if($row['gender']==2) { echo 'checked'; } ?>/>Women
         </td>
       </tr>
 	  <tr>
-        <td width="16%">Email</td>
+        <td width="16%"><b>Email</b></td>
         <td><input type="text" name="email" size="50" value="<?php echo $row['email']; ?>"/></td>
       </tr>
 	  <tr>
-        <td width="16%">Phone No</td>
+        <td width="16%"><b>Phone No</b></td>
         <td><input type="text" name="phone" size="50" value="<?php echo $row['telephone']; ?>"/></td>
       </tr>
       <tr>
-        <td width="16%">Address</td>
-        <td><textarea name="address" cols="47" rows="3"><?php echo ucwords (strtolower($row['address'])); ?></textarea></td>
+        <td width="16%"><b>Address</b></td>
+        <td><textarea name="address" cols="47" rows="3"><?php echo $row['address']; ?></textarea></td>
       </tr>
       <tr>
-        <td width="16%">Username</td>
+        <td width="16%"><b>Username</b></td>
         <td><?php echo $row['username']; ?>
         	<input type="hidden" name="username" size="50" value="<?php echo $row['username']; ?>" /></td> 
       </tr>
       <tr>
-        <td width="16%">Password</td>
+        <td width="16%"><b>Password</b></td>
         <td><input type="password" name="password" size="50" value="<?php echo $row['password']; ?>" /></td> 
-      </tr>
-	  <tr>
-      	<td></td>
-        <td>
-	    </td>
-      </tr> 
-	  
-      <tr> 
-        <td colspan="2"><input type="hidden" name="user" value=" <?php echo $user; ?> " />
-
       </tr>	  
-	  
-      <tr> 
-        <td colspan="2"><input type="submit" name="submit" value=" Save " />
-        <input type="button" name="cancel" value=" Cancel " onclick="location.href='users.php'" />
-        <input type="button" name="cancel" value=" Delete User " onclick="location.href='delete_user.php?user_id=<?php echo $row['user_id'];?>' "/></td></tr> 
+      <tr style="text-align:center;"> 
+        <td colspan="2"><input class="save" type="submit" name="submit" value=" Save " />
+        <input class="cancel" type="button" name="cancel" value=" Cancel " onclick="location.href='users.php'" />
+        <input class="delete" type="button" name="cancel" value=" Delete User " onclick="location.href='delete_user.php?user_id=<?php echo $row['user_id'];?>' "/></td></tr> 
+        <tr> 
+        <td colspan="2"><input type="hidden" name="user" value=" <?php echo $user; ?> " />
+      </tr>	  
     </table>
 </form>
 

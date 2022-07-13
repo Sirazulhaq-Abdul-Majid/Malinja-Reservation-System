@@ -1,3 +1,12 @@
+<?php
+include ("../php/session.php");
+include('../php/dbconn.php');
+session_start();
+if (!isset($_SESSION['username'])) {
+  header('Location: ../');
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -60,11 +69,12 @@ table.oya {
 </head>
 <body id="body" data-spy="scroll" data-target=".navbar" data-offset="100">
   <header id="header-section">
-    <nav class="navbar navbar-expand-lg pl-3 pl-sm-0" id="navbar">
+    <nav class="navbar navbar-expand-lg pl-3 pl-sm-0" id="navbar" style="font-family: Poppins,sans-serif;">
     <div class="container">
       <div class="navbar-brand-wrapper d-flex w-100">
       
-        <img src="images/logohoriz.png" alt="" style="width:150px;">
+      <a href="index.php">
+        <img src="images/logohoriz.png" alt="" style="width:150px;"></a>
       
         <button class="navbar-toggler ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="mdi mdi-menu navbar-toggler-icon"></span>
@@ -109,14 +119,7 @@ table.oya {
     
 
 <div class="tabreq">
-<?php
-include ("../php/session.php");
-include('../php/dbconn.php');
-session_start();
-if (!isset($_SESSION['username'])) {
-  header('Location: ../');
-}
-?>
+
 <table class="oya" style=" background-color: #ADD8E6; border: 1px solid black;">
 <tr >
                 <td width="17%" style="text-align:center;">RESERVE ID</td>

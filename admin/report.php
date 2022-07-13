@@ -1,3 +1,11 @@
+<?php 
+include ("../php/session.php");
+include('../php/dbconn.php');
+session_start();
+if (!isset($_SESSION['username'])) {
+  header('Location: ../');
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -52,17 +60,38 @@ th{
     border: 1px solid;
 }
 
+.typing {
+  
+  white-space: nowrap;
+  overflow: hidden;
+  border-right: 3px solid;
+  font-family: monospace;
+  font-size: 2em;
+}
+
+@keyframes typing {
+  from {
+    width: 0
+  }
+}
+
+@keyframes blink {
+  50% {
+    border-color: transparent;
+  }
+}
 
 </style>
 
 </head>
 <body id="body" data-spy="scroll" data-target=".navbar" data-offset="100">
   <header id="header-section">
-    <nav class="navbar navbar-expand-lg pl-3 pl-sm-0" id="navbar">
+    <nav class="navbar navbar-expand-lg pl-3 pl-sm-0" id="navbar" style="font-family: Poppins,sans-serif;">
     <div class="container">
       <div class="navbar-brand-wrapper d-flex w-100">
       
-        <img src="images/logohoriz.png" alt="" style="width:150px;">
+      <a href="index.php">
+        <img src="images/logohoriz.png" alt="" style="width:150px;"></a>
       
         <button class="navbar-toggler ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="mdi mdi-menu navbar-toggler-icon"></span>
@@ -104,14 +133,8 @@ th{
       <h1 class="font-weight-semibold">AVAILABLITY</h1>
       </div><br><br>
 
-<?php 
-include ("../php/session.php");
-include('../php/dbconn.php');
-session_start();
-if (!isset($_SESSION['username'])) {
-  header('Location: ../');
-}
-?>
+      
+
 <?php
 include('../php/dbconn.php');
 include ("../php/session.php");
@@ -122,7 +145,10 @@ $numrow=mysqli_num_rows($result);?>
 <div class="col-lg-11">
 <div class="card shadow-sm">
 <div class="card-header bg-transparent border-10">
+<div class="typing" style="animation: typing 2s steps(8), blink .5s step-end infinite alternate; width: 10ch;">
 <h3 class="mb-0"><i class="fa fa-th-large pr-1"></i>MALINJA A</h3>
+
+</div>
 </div>
 
 <table border=1 style="">
@@ -204,13 +230,17 @@ $numrow=mysqli_num_rows($result);?>
     ?></tr>
 
 </table>
+
+<img src="images/wapucitau.png"  width="100" height="80">
   </div>
   <br>
 
 <div class="col-lg-13">
 <div class="card shadow-sm">
 <div class="card-header bg-transparent border-0">
+<div class="typing" style="animation: typing 2s steps(8), blink .5s step-end infinite alternate; width: 10ch;">
 <h3 class="mb-0"><i class="fa fa-th-large pr-1"></i>MALINJA B</h3>
+  </div>
 </div>
 <table border=1>
 
@@ -292,6 +322,7 @@ $numrow=mysqli_num_rows($result);?>
     ?></tr>
 
 </table>
+<img src="images/wapucitau.png"  width="100" height="80">
   </div>
   </div>
 <br><br><br>

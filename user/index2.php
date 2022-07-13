@@ -17,20 +17,20 @@
   <link rel="stylesheet" href="css/stylebook.css">
   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
    <!-- Google Fonts -->
-<link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,900&display=swap" rel="stylesheet">
+
 <!-- Bootstrap CSS -->
 <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css'>
 <!-- Font Awesome CSS -->
-<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css'>
+
 
 </head>
 <body id="body" data-spy="scroll" data-target=".navbar" data-offset="100">
   <header id="header-section">
-    <nav class="navbar navbar-expand-lg pl-3 pl-sm-0" id="navbar">
+    <nav class="navbar navbar-expand-lg pl-3 pl-sm-0" id="navbar" style="font-family: Poppins,sans-serif;">
     <div class="container">
       <div class="navbar-brand-wrapper d-flex w-100">
-
-        <img src="images/logohoriz.png" alt="" style="width:150px;">
+        <a href="index.php">
+        <img src="images/logohoriz.png" alt="" style="width:150px;"></a>
 
         <button class="navbar-toggler ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="mdi mdi-menu navbar-toggler-icon"></span>
@@ -47,14 +47,18 @@
             </button>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="index.html">Home</a>
+            <a class="nav-link" href="index.php">Home</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="index2.php">Request</a>  
           </li>
           <li class="nav-item">
+            <a class="nav-link" href="user-view-history.php">History</a>
+          </li>
+          <li class="nav-item">
             <a class="nav-link" href="user_view_detail.php">Profile</a>
           </li>
+          
           <li class="nav-item btn-contact-us pl-4 pl-lg-0">
             <button class="btn btn-info" data-toggle="modal" data-target="#exampleModal" ><a href="../index.php"><div style="color:white">Logout</div></a></button>
           </li>
@@ -65,6 +69,8 @@
   </header>
   
   <div class="main" id='main'>
+  <button class="top" id="top" onclick="document.documentElement.scrollTop = 0;"  title="Go to top">Top</button> 
+  
   <?php 
 include ("../php/session.php");
 include('../php/dbconn.php');
@@ -73,6 +79,7 @@ if (!isset($_SESSION['username'])) {
   header('Location: ../');
 }
 ?>
+
 <?php
 include('../php/dbconn.php');
 include ("../php/session.php");
@@ -80,39 +87,7 @@ $uid=$_SESSION['user_id'];
 $q="SELECT * FROM reserve WHERE user_id='$uid' ORDER BY timestamp";
 $result=mysqli_query($dbconn,$q);
 $numrow=mysqli_num_rows($result);?>
-<div class="history">
-<table border=1>
 
-    <tr><td>reserve id</td><td>timestamp</td><td>bed</td><td>status</td></tr>
-    <?php for ($a=0;$a<$numrow;$a++){
-        $row=mysqli_fetch_array($result);
-        echo '<tr>';
-        echo '<td>';
-        echo $row['reserve_id'];
-        echo '</td>';
-        echo '<td>';
-        echo $row['timestamp'];
-        echo '</td>';
-        echo '<td>';
-        echo $row['bed_id'];
-        echo '</td>';
-        echo '<td>';
-        if($row['status']==1){
-          echo 'Approved';
-        }
-        else if ($row['status']==-1){
-          echo 'Rejected';
-        }
-        else{
-            echo 'Pending';
-        }
-        
-        echo '</td>';
-        echo '</tr>';
-    }?>
-
-</table>
-</div>
      
 
     <?php
@@ -130,7 +105,7 @@ include('../php/dbconn.php');
 
           if (!isset($_SESSION['username'])) {
             header('Location: ../');
-		      } 
+              } 
             $query="SELECT * FROM room ORDER BY room_id,availability ";
             $result = mysqli_query($dbconn, $query) or die ("Error: " . mysqli_error($dbconn));
             $numrow = mysqli_num_rows($result);
@@ -237,7 +212,7 @@ $_SESSION['bfloor']=$bfloors;
 //print_r($_SESSION['blockavail']);
 if(isset($_SESSION['warn'])):?>
   <div class="error">
-  request limit reached
+  Request Limit Reached
   </div>
 
 <?php endif ?>
@@ -247,6 +222,7 @@ if(isset($_SESSION['warn'])):?>
 
 
     <div class="block-container">
+        
 <form method='POST'>
 <?php $blockavail=$_SESSION['blockavail'];
 for($a=1;$a<3;$a++):?>
@@ -256,7 +232,7 @@ for($a=1;$a<3;$a++):?>
     else{
         $val="B";
     }?>
-    <button type="submit" value=<?php echo $val ?> style='background-color:<?php echo $blockavail[$a]?>; width:150px; height: 350px;' id='block' name='block' >Block <?php echo $val?></button>
+    <button type="submit" value=<?php echo $val ?> style='background-color:<?php echo $blockavail[$a]?>; width:150px; height: 350px; color:white; font-family: Poppins,sans-serif;' id='block' name='block' >Block <?php echo $val?></button>
 <?php endfor ?>
 </form>
 </div>
@@ -306,13 +282,12 @@ for($a=1;$a<3;$a++):?>
         for ($a=1;$a<5;$a++):
             if ($a==1):?>
                 <div class="gf">
-                <button type="submit" value="GF" style='background-color:<?php echo $afloor[$a]?>; width:100%; height:100%' id='floora' name='floora'>Ground Floor</button>
+                <button type="submit" value="GF" style='background-color:<?php echo $afloor[$a]?>; width:100%; height:100%; color:white; font-family: Poppins,sans-serif;' id='floora' name='floora'>Ground Floor</button>
                 </div>
                     <?php continue; ?>
-                
             <?php endif ?>
             <div class="f<?php echo $a-1?>">
-            <button type="submit" value=<?php echo $a ?> style='background-color:<?php echo $afloor[$a]?>; width:100%; height:100%' id='floora' name='floora'>Floor <?php echo $a-1?></button>
+            <button type="submit" value=<?php echo $a ?> style='background-color:<?php echo $afloor[$a]?>; width:100%; height:100%; color:white; font-family: Poppins,sans-serif;' id='floora' name='floora'>Floor <?php echo $a-1?></button>
             </div>
         <?php endfor ?>
     <?php endif ?>
@@ -321,12 +296,12 @@ for($a=1;$a<3;$a++):?>
         for ($a=1;$a<5;$a++):
             if ($a==1):?>
                 <div class="gf">
-                <button type="submit" value="GF" style='background-color:<?php echo $bfloor[$a]?>;width:100%; height:100%' id='floorb' name='floorb'>Ground Floor</button>
+                <button type="submit" value="GF" style='background-color:<?php echo $bfloor[$a]?>;width:100%; height:100%; color:white; font-family: Poppins,sans-serif;' id='floorb' name='floorb'>Ground Floor</button>
                 </div>
                 <?php continue; ?>
             <?php endif ?>
             <div class="f<?php echo $a-1?>">
-            <button type="submit" value=<?php echo $a ?> style='background-color:<?php echo $bfloor[$a]?>; width:100%; height:100%' id='floorb' name='floorb'>Floor <?php echo $a-1?></button>
+            <button type="submit" value=<?php echo $a ?> style='background-color:<?php echo $bfloor[$a]?>;width:100%; height:100%; color:white; font-family: Poppins,sans-serif;' id='floorb' name='floorb'>Floor <?php echo $a-1?></button>
             </div>
         <?php endfor ?>
     <?php endif ?>
@@ -357,7 +332,7 @@ for($a=1;$a<3;$a++):?>
         header("Location:index2.php#oya");
     }
     else{
-        header("Location:index2.php#room-container");
+        header("Location:index2.php#aye");
     }
 }
 else if(isset($_POST['floorb'])){
@@ -376,9 +351,12 @@ else if(isset($_POST['floorb'])){
         echo '<script type ="text/JavaScript">';  
         echo 'alert("Not Available!")';  
         echo '</script>';  
+        header("Location:index2.php#oya");
+    }
+    else{
+        header("Location:index2.php#aye");
     }
     
-    header("Location:index2.php#room-container");
 }
 ?>
 <?php if(isset($_SESSION['floor'])):
@@ -420,22 +398,40 @@ else if(isset($_POST['floorb'])){
         //print_r($_SESSION['room']);
         ?>
     <?php endif ?>
+    <div style="height:100px" id="aye"></div>
     <form method='POST'>
     <div class='w3-animate-opacity'>
-    <div class="room-container" id='room-container'>
+    <div class="room-container" id='room-container' style='padding:0px'>
         <?php 
-        echo 'Block :';
+        echo "<div>";
+        echo 'Block : ';
         echo $_SESSION['block'];
         echo "<br>";
-        echo "Floor :";
+        echo "Floor &nbsp;: ";
         if ($_SESSION['floor']==1){
             echo 'GF';
         }
         else{
             echo $_SESSION['floor'];    
         }
+        echo "</div>";
     ?>
       <div class="building-border">
+        <div class="toilet-1">
+            Toilet
+        </div>
+        <div class="toilet-2">
+             Toilet   
+        </div>
+        <div class="stair-1">
+            Stairs
+        </div>
+        <div class="stair-2">
+            Stairs
+        </div>
+        <div class="stair-3">
+            Stairs
+        </div>
       <?php
     $room=$_SESSION['room'];
 
@@ -447,9 +443,9 @@ else if(isset($_POST['floorb'])){
     ?>
         <div class="room<?php echo $a?>">
         <?php if ($a<10):?>
-        <button type="submit" value=<?php echo $a ?> style='background-color:<?php echo $room[$a]?>; width:100%; height:100%' id='bed' name='bed'><?php echo $block ?><?php echo $floor-1?>0<?php echo $a?></button>
+        <button type="submit" value=<?php echo $a ?> style='background-color:<?php echo $room[$a]?>; width:100%; height:100%; color: white' id='bed' name='bed'><?php echo $block ?><?php echo $floor-1?>0<?php echo $a?></button>
         <?php else:?>
-            <button type="submit" value=<?php echo $a ?> style='background-color:<?php echo $room[$a]?>; width:100%; height:100%' id='bed' name='bed'><?php echo $block ?><?php echo $floor-1?><?php echo $a?></button>
+            <button type="submit" value=<?php echo $a ?> style='background-color:<?php echo $room[$a]?>; width:100%; height:100%; color:white' id='bed' name='bed'><?php echo $block ?><?php echo $floor-1?><?php echo $a?></button>
 
 
         <?php endif ?>
@@ -465,13 +461,17 @@ else if(isset($_POST['floorb'])){
 
 <?php 
 if(isset($_POST['bed'])){
-    header("Location:index2.php#bed-container");
+    
     $_SESSION['roomid']=$_POST['bed'];
     $r=$_SESSION['room'];
     if ($r[$_SESSION['roomid']]=='red'){
         echo '<script type ="text/JavaScript">';  
         echo 'alert("Not Available!")';  
         echo '</script>';  
+        header("Location:index2.php#aye");
+    }
+    else{
+        header("Location:index2.php#bed-container");
     }
 }
 ?>
@@ -491,20 +491,24 @@ if(isset($_SESSION['roomid'])):
     ?>
     
     <div class='w3-animate-opacity'>
+    <div style='height:100px'>
+</div>
     <div class="bed-container" id='bed-container'>
     <?php 
-        echo 'Block :';
+        echo '<div class="legend-bed">';
+        echo "Block &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: ";
         echo $_SESSION['block'];
         echo "<br>";
-        echo "Floor :";
+        echo "Floor &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: ";
         if ($_SESSION['floor']==1){
             echo 'GF';
         }
         else{
             echo $_SESSION['floor'];    
         }
-        echo "<br>Room No :";
+        echo "<br>Room No: ";
         echo $_SESSION['roomid'];
+        echo '</div>';
     ?>
     <form method='POST'>
         <div class="bed-border">
@@ -515,12 +519,12 @@ if(isset($_SESSION['roomid'])):
             if($row2['total_resident']<6):
                 if ($row1['availability']==1):?>
                 <div class="bed<?php echo $a+1?>">
-                <button type="submit" value=<?php echo $a+1 ?> style='background-color:green; width:100%; height:100%' id='bed' name='final'>Bed <?php echo $a+1 ?></button>
+                <button type="submit" value=<?php echo $a+1 ?> style='background-color:green; width:100%; height:100%; color:white' id='bed' name='final'>Bed <?php echo $a+1 ?></button>
                 </div>
                     
                 <?php endif ?>
                 <?php if ($row1['availability']==0):?>
-                    <button type="submit" value=<?php echo $a+1 ?> style='background-color:red; width:100%; height:100%'>Bed <?php echo $a+1?></button>
+                    <button type="submit" value=<?php echo $a+1 ?> style='background-color:red; width:100%; height:100%; color:white;'>Bed <?php echo $a+1?></button>
                 <?php endif ?>
             <?php endif ?>
         <?php endfor ?>

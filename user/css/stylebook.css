@@ -5,9 +5,38 @@
     margin-left: auto;
 }
 
+button.top {
+    position: fixed; /* Fixed/sticky position */
+    bottom: 20px; /* Place the button at the bottom of the page */
+    right: 30px; /* Place the button 30px from the right */
+    z-index: 99; /* Make sure it does not overlap */
+    border: none; /* Remove borders */
+    outline: none; /* Remove outline */
+    background-color: #17a2b8; /* Set a background color */
+    color: white; /* Text color */
+    cursor: pointer; /* Add a mouse pointer on hover */
+    padding: 15px; /* Some padding */
+    border-radius: 10px; /* Rounded corners */
+    font-size: 18px; /* Increase font size */
+  }
+  
+button.top:hover{
+    background-color: #555; /* Add a dark-grey background on hover */
+}
+
+.error{
+    position: absolute;
+    top: 195px;
+    left: 620px;
+    font-family: Poppins,sans-serif;
+    font-size: 26px;
+    color: red;
+}
+
 .history{
     height: 600px;
     padding-top: 225px;
+    font-family: Poppins,sans-serif;
 }
 
 .history>table{
@@ -15,6 +44,7 @@
 }
 
 .block-floor-container{
+    position: relative;
     display: grid;
     grid-template-columns: auto auto;
     grid-template-rows: auto;
@@ -27,11 +57,26 @@
     margin-bottom: 200px;
 }
 
+.block-plan{
+    position: absolute;
+    width: 314px;
+    height: 361px;
+    z-index: -1;
+    left: 55px;
+}
+
 .block-container{
     height: auto;
     width: 306px;
 }
 
+.floor-plan{
+    position: absolute;
+    width: 388px;
+    height: 361px;
+    z-index: -1;
+    left: 519px;
+}
 
 .floor-container{
     display: grid;
@@ -43,6 +88,10 @@
 .gf{
     height: 87.5px;
     width: 375px;
+}
+
+.gf-1{
+    height: 10px;
 }
 
 .f1{
@@ -79,102 +128,165 @@
     margin-top: auto;
     margin-bottom: 100px;
     align-items: center;
-    justify-content: space-around;  
+    justify-content: space-around;
+    font-family: Poppins,sans-serif;  
+}
+
+
+
+.room-plan{
+    position: absolute;
+    width: 811px;
+    height: 419px;
+    left: 368px;
+    z-index: -1;
 }
 
 .building-border{
     width: 90%;
     height: 90%;
     display: grid;
-    grid-template-columns: auto auto auto auto auto auto auto auto auto;
-    grid-template-rows: auto auto auto auto auto auto auto;
+    grid-template-columns: auto auto auto auto auto auto auto auto auto auto;
+    grid-template-rows: auto auto auto auto auto auto auto auto auto;
     border: solid gray 3px;
 }
 
-
-.room1{
+.stair-1{
+    display: flex;
+    justify-content: center;
+    align-items: center;
     grid-column-start: 1;
-    grid-row-start: 2;
+    grid-row-start: 3;
+    border: solid black 1px;
+
 }
 
-.room2{
+.toilet-1{
+    display: flex;
+    justify-content: center;
+    align-items: center;
     grid-column-start: 1;
+    grid-row:1 /span 2;
+    border: solid black 1px;
+}
+
+.room1{
+    grid-column-start: 2;
     grid-row-start: 1;
 }
 
-.room11{
-    grid-column-start: 9;
+.room2{
+    grid-column-start: 3;
+    grid-row-start: 1;
+}
+
+.room10{
+    grid-column-start: 10;
     grid-row-start: 2;
 }
 
-.room12{
-    grid-column-start: 9;
+.room11{
+    grid-column-start: 10;
     grid-row-start: 3;
 }
 
-.room13{
-    grid-column-start: 9;
+.room12{
+    grid-column-start: 10;
     grid-row-start: 4;
 }
 
-.room14{
+.stair-2{
+    display: flex;
+    justify-content: center;
+    align-items: center;
     grid-column-start: 9;
+    grid-row: 4 /span 3;
+    border: solid black 1px;
+}
+
+.room13{
+    grid-column-start: 10;
     grid-row-start: 5;
 }
 
-.room15{
-    grid-column-start: 9;
+.room14{
+    grid-column-start: 10;
     grid-row-start: 6;
+}
+
+
+
+.room15{
+    grid-column-start: 10;
+    grid-row-start: 7;
+}
+
+.toilet-2{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    grid-column-start: 10;
+    grid-row: 8 /span 2;
+    border: solid black 1px;
 }
 
 .room16{
     grid-column-start: 9;
-    grid-row-start: 7;
+    grid-row-start: 9;
 }
 
 .room17{
     grid-column-start: 8;
-    grid-row-start: 7;
+    grid-row-start: 9;
 }
 
 .room18{
     grid-column-start: 7;
-    grid-row-start: 7;
+    grid-row-start: 9;
 }
 
 .room19{
     grid-column-start: 6;
-    grid-row-start: 7;
+    grid-row-start: 9;
 }
 
 .room20{
     grid-column-start: 5;
-    grid-row-start: 7;
+    grid-row-start: 9;
 }
 
 .room21{
     grid-column-start: 4;
-    grid-row-start: 7;
+    grid-row-start: 9;
 }
 
 .room22{
     grid-column-start: 3;
-    grid-row-start: 7;
+    grid-row-start: 9;
 }
 
 .room23{
     grid-column-start: 2;
-    grid-row-start: 7;
+    grid-row-start: 9;
 }
 
 .room24{
     grid-column-start: 1;
-    grid-row-start: 7;
+    grid-row-start: 9;
 }
 
 .room25{
     grid-column-start: 1;
-    grid-row-start: 6;
+    grid-row-start: 8;
+}
+
+.stair-3{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    grid-column-start: 1;
+    grid-row-start: 7;
+    border: solid black 1px;
 }
 
 .bed-container{
@@ -192,7 +304,20 @@
     margin-top: auto;
     margin-bottom: auto;
     align-items: center;
-    justify-content: space-around;  
+    justify-content: space-around;
+    font-family: Poppins,sans-serif; 
+}
+
+.legend-bed{
+    font-size: 20px;
+}
+
+.bed-plan{
+    position: absolute;
+    width: 518px;
+    height: 313px;
+    left: 603px;
+    z-index: -1;
 }
 
 .bed-border{
@@ -214,12 +339,7 @@
     grid-row-start: 2;
 }
 
-.error{
-    margin-top: -451px;
-    width: 100%;
-    position: absolute;
-    margin-right: -1246px;
-}
+
 
 
 

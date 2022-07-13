@@ -1,3 +1,13 @@
+
+<?php 
+    ob_start();
+    include ("../php/session.php");
+    include('../php/dbconn.php');
+    session_start();
+    if (!isset($_SESSION['username'])) {
+      header('Location: ../');
+    }
+    ?>
 <html>
     <head>
     <script src="https://code.jquery.com/jquery-3.6.0.slim.min.js" integrity="sha256-u7e5khyithlIdTpu22PHhENmPcRdFiHRjhAuHcs05RI=" crossorigin="anonymous"></script>
@@ -75,17 +85,37 @@ body{
   width: 50%;
 }
 
+.typing {
+  
+  white-space: nowrap;
+  overflow: hidden;
+  border-right: 3px solid;
+  font-family: monospace;
+  font-size: 2em;
+}
 
+@keyframes typing {
+  from {
+    width: 0
+  }
+}
+
+@keyframes blink {
+  50% {
+    border-color: transparent;
+  }
+}
 
 </style>
 </head>
 <body id="body" data-spy="scroll" data-target=".navbar" data-offset="100">
   <header id="header-section">
-    <nav class="navbar navbar-expand-lg pl-3 pl-sm-0" id="navbar">
+    <nav class="navbar navbar-expand-lg pl-3 pl-sm-0" id="navbar" style="font-family: Poppins,sans-serif;">
     <div class="container">
       <div class="navbar-brand-wrapper d-flex w-100">
 
-        <img src="images/logohoriz.png" alt="" style="width:150px;">
+      <a href="index.php">
+        <img src="images/logohoriz.png" alt="" style="width:150px;"></a>
 
         <button class="navbar-toggler ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="mdi mdi-menu navbar-toggler-icon"></span>
@@ -102,13 +132,16 @@ body{
             </button>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="index.html">Home</a>
+            <a class="nav-link" href="index.php">Home</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="index2.php">Request</a>  
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#feedback-section">Profile</a>
+            <a class="nav-link" href="user-view-history.php">History</a>  
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="user_view_detail.php">Profile</a>
           </li>
           <li class="nav-item btn-contact-us pl-4 pl-lg-0">
             <button class="btn btn-info" data-toggle="modal" data-target="#exampleModal" ><a href="../index.php"><div style="color:white">Logout</div></a></button>
@@ -117,16 +150,7 @@ body{
       </div>
     </div> 
     </nav>   
-  </header>
-<?php 
-    ob_start();
-    include ("../php/session.php");
-    include('../php/dbconn.php');
-    session_start();
-    if (!isset($_SESSION['username'])) {
-      header('Location: ../');
-    }
-    ?>
+    </header>
     <?php
     
     include('../php/dbconn.php');
@@ -172,6 +196,7 @@ body{
 <div class="col-lg-11">
 <div class="card shadow-sm">
 <div class="card-header bg-transparent border-0">
+<div class="typing" style="animation: typing 2s steps(8), blink .5s step-end infinite alternate; width: 6ch;">
 <h3 class="mb-0"><i class="fa fa-user-circle pr-1"></i>USER</h3>
 </div>
 <div class="card-body pt-0">
@@ -197,6 +222,7 @@ body{
 <td><?php echo $_SESSION['pass']?><br></td>
 </tr>
 </table>
+  </div >
 </div>
 </div>
 
@@ -204,7 +230,9 @@ body{
 <div class="col-lg-13">
 <div class="card shadow-sm">
 <div class="card-header bg-transparent border-0">
+<div class="typing" style="animation: typing 2s steps(8), blink .5s step-end infinite alternate; width: 10ch;">
 <h3 class="mb-0"><i class="fa fa-user pr-1"></i>Dependant</h3>
+            </div>
 </div>
 <div class="card-body pt-0">
 <table class="table table-bordered">

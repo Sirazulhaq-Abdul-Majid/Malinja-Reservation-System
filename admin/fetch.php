@@ -50,7 +50,6 @@ if ($query!=""){
 
             <th>Telephone</th>
 
-            <th>Action</th>
 
 			</tr>';
 

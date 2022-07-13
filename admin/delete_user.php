@@ -11,7 +11,7 @@
 	if ($result) {
 	  ?>
 	  <script type="text/javascript">
-	  	window.location = "index.php"
+	  	window.location = "users.php"
 	  </script>
 	  <?php }
     
@@ -20,7 +20,7 @@
       echo $update;
 	?> 
 	  <script type="text/javascript">
-	  	window.location = "index.php"
+	  	window.open('user.php','_self');
 	  </script>
 	<?php       
      } 
