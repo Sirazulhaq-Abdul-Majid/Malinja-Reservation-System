@@ -9,6 +9,7 @@
 	//echo $delete;
 	
 	if ($result) {
+		
 	  ?>
 	  <script type="text/javascript">
 	  	window.location = "users.php"
